@@ -1,31 +1,13 @@
 package country.service;
 
 
+import baseservice.AbstractMemoryService;
 import country.Country;
 import country.repo.CountryMemoryRepo;
 
-public class CountryMemoryService {
+public class CountryMemoryService extends AbstractMemoryService {
 
-    private CountryMemoryRepo countryRepo = new CountryMemoryRepo();
-
-    public void addCountry(Country country) {
-        countryRepo.addCountry(country);
+    public CountryMemoryService(CountryMemoryRepo repo) {
+        this.repo = repo;
     }
-
-    public Country findCountryByID(long id) {
-        return countryRepo.findCountryByID(id);
-    }
-
-    public void deleteCountry(Country country) {
-        countryRepo.deleteCountry(country);
-    }
-
-    public void deleteCountry(Long id) {
-        countryRepo.deleteCountry(id);
-    }
-
-    public void printCountrys() {
-        countryRepo.printCountries();
-    }
-
 }

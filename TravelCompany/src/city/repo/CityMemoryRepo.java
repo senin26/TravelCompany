@@ -1,58 +1,37 @@
 package city.repo;
 
+import base.TravelCompanyRepo;
+import baserepo.AbstractMemoryRepo;
 import city.City;
 import common.ArrayUtils;
 
 import static storage.Storage.cities;
 
-public class CityMemoryRepo {
+public class CityMemoryRepo extends AbstractMemoryRepo {
 
-    private int index = -1;
+    private int cityIndex = -1;
 
-    public void addCity (City city) {
-        if (index == cities.length - 1){
+    @Override
+    public void add (TravelCompanyRepo city) {
+        if (cityIndex == cities.length - 1){
             City[] citiesTemp = new City[cities.length + (cities.length>>1)];
             System.arraycopy(cities,0,citiesTemp,0,cities.length);
             cities = citiesTemp;
         }
-        index++;
-        cities[index] = city;
+        cityIndex++;
+        cities[cityIndex] = (City) city;
     }
 
-    public City findCityByID (long id) {
-        Integer index = findCityIndexById(id);
+    @Override
+    public void delete (TravelCompanyRepo city) {
+        Integer index = findIndexByEntity((City) city);
         if (index!=null) {
-            return cities[index];
-        }
-        return null;
-    }
-
-    public void deleteCity (City city) {
-        Integer index = findCityIndexByEntity(city);
-        if (index!=null) {
-            deleteCityByIndex(index);
+            deleteByIndex(index);
         }
     }
 
-    public void deleteCity (Long id) {
-        Integer index = findCityIndexById(id);
-        if (index!=null) {
-            deleteCityByIndex(index);
-        }
-    }
-
-    private void deleteCityByIndex (int index) {
-        ArrayUtils.deleteByIndex(cities,index);
-        index--;
-    }
-
-    public void printCountries () {
-        for (City u: cities) {
-            System.out.println(u);
-        }
-    }
-
-    public Integer findCityIndexByEntity(City city) {
+    @Override
+    public Integer findIndexByEntity(TravelCompanyRepo city) {
         for (int i = 0; i < cities.length; i++) {
             if (cities[i].equals(city)) {
                 return i;
@@ -61,7 +40,30 @@ public class CityMemoryRepo {
         return null;
     }
 
-    public Integer findCityIndexById (Long id) {
+    @Override
+    public City findByID (long id) {
+        Integer index = findIndexById(id);
+        if (index!=null) {
+            return cities[index];
+        }
+        return null;
+    }
+
+    @Override
+    protected void deleteByIndex (int index) {
+        ArrayUtils.deleteByIndex(cities,index);
+        cityIndex--;
+    }
+
+    @Override
+    public void print () {
+        for (City u: cities) {
+            System.out.println(u);
+        }
+    }
+
+    @Override
+    public Integer findIndexById (Long id) {
         for (int i = 0; i < cities.length; i++) {
             if (cities[i].getId().equals(id)) {
                 return i;

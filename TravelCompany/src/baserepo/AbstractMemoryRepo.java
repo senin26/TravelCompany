@@ -27,7 +27,7 @@ public abstract class AbstractMemoryRepo {
 
     protected abstract Integer findIndexById (Long id);
 
-    public abstract User findByID (long id);
+    public abstract TravelCompanyRepo findByID (long id);
 
 
 }

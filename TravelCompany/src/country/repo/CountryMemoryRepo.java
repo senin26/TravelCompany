@@ -1,58 +1,37 @@
 package country.repo;
 
+import base.TravelCompanyRepo;
+import baserepo.AbstractMemoryRepo;
 import common.ArrayUtils;
 import country.Country;
 
 import static storage.Storage.countries;
 
-public class CountryMemoryRepo {
+public class CountryMemoryRepo extends AbstractMemoryRepo {
 
     private int countryIndex = -1;
 
-    public void addCountry (Country country) {
+    @Override
+    public void add (TravelCompanyRepo country) {
         if (countryIndex == countries.length - 1){
             Country[] countriesTemp = new Country[countries.length + (countries.length>>1)];
             System.arraycopy(countries,0,countriesTemp,0,countries.length);
             countries = countriesTemp;
         }
         countryIndex++;
-        countries[countryIndex] = country;
+        countries[countryIndex] = (Country) country;
     }
 
-    public Country findCountryByID (long id) {
-        Integer countryIndex = findCountryIndexById(id);
-        if (countryIndex!=null) {
-            return countries[countryIndex];
-        }
-        return null;
-    }
-
-    public void deleteCountry (Country country) {
-        Integer countryIndex = findCountryIndexByEntity(country);
-        if (countryIndex!=null) {
-            deleteCountryByIndex(countryIndex);
+    @Override
+    public void delete (TravelCompanyRepo country) {
+        Integer index = findIndexByEntity((Country) country);
+        if (index!=null) {
+            deleteByIndex(index);
         }
     }
 
-    public void deleteCountry (Long id) {
-        Integer countryIndex = findCountryIndexById(id);
-        if (countryIndex!=null) {
-            deleteCountryByIndex(countryIndex);
-        }
-    }
-
-    private void deleteCountryByIndex (int index) {
-        ArrayUtils.deleteByIndex(countries,index);
-        countryIndex--;
-    }
-
-    public void printCountries () {
-        for (Country u: countries) {
-            System.out.println(u);
-        }
-    }
-
-    public Integer findCountryIndexByEntity(Country country) {
+    @Override
+    public Integer findIndexByEntity(TravelCompanyRepo country) {
         for (int i = 0; i < countries.length; i++) {
             if (countries[i].equals(country)) {
                 return i;
@@ -61,7 +40,30 @@ public class CountryMemoryRepo {
         return null;
     }
 
-    public Integer findCountryIndexById (Long id) {
+    @Override
+    public Country findByID (long id) {
+        Integer index = findIndexById(id);
+        if (index!=null) {
+            return countries[index];
+        }
+        return null;
+    }
+
+    @Override
+    protected void deleteByIndex (int index) {
+        ArrayUtils.deleteByIndex(countries,index);
+        countryIndex--;
+    }
+
+    @Override
+    public void print () {
+        for (Country u: countries) {
+            System.out.println(u);
+        }
+    }
+
+    @Override
+    public Integer findIndexById (Long id) {
         for (int i = 0; i < countries.length; i++) {
             if (countries[i].getId().equals(id)) {
                 return i;

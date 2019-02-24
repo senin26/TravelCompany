@@ -6,5 +6,9 @@ import user.User;
 import user.repo.UserMemoryRepo;
 
 public class UserMemoryService extends AbstractMemoryService {
-    UserMemoryRepo repo = new UserMemoryRepo();
+
+    public UserMemoryService(UserMemoryRepo repo) {
+        this.repo = repo;
+    }
+
 }

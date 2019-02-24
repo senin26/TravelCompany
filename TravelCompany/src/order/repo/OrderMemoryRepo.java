@@ -1,58 +1,37 @@
 package order.repo;
 
+import base.TravelCompanyRepo;
+import baserepo.AbstractMemoryRepo;
 import common.ArrayUtils;
 import order.Order;
 
 import static storage.Storage.orders;
 
-public class OrderMemoryRepo {
+public class OrderMemoryRepo extends AbstractMemoryRepo {
 
     private int orderIndex = -1;
 
-    public void addOrder (Order order) {
+    @Override
+    public void add (TravelCompanyRepo order) {
         if (orderIndex == orders.length - 1){
             Order[] ordersTemp = new Order[orders.length + (orders.length>>1)];
             System.arraycopy(orders,0,ordersTemp,0,orders.length);
             orders = ordersTemp;
         }
         orderIndex++;
-        orders[orderIndex] = order;
+        orders[orderIndex] = (Order) order;
     }
 
-    public Order findOrderByID (long id) {
-        Integer orderIndex = findOrderIndexById(id);
-        if (orderIndex!=null) {
-            return orders[orderIndex];
-        }
-        return null;
-    }
-
-    public void deleteOrder (Order order) {
-        Integer orderIndex = findOrderIndexByEntity(order);
-        if (orderIndex!=null) {
-            deleteOrderByIndex(orderIndex);
+    @Override
+    public void delete (TravelCompanyRepo order) {
+        Integer index = findIndexByEntity((Order) order);
+        if (index!=null) {
+            deleteByIndex(index);
         }
     }
 
-    public void deleteOrder (Long id) {
-        Integer orderIndex = findOrderIndexById(id);
-        if (orderIndex!=null) {
-            deleteOrderByIndex(orderIndex);
-        }
-    }
-
-    private void deleteOrderByIndex (int index) {
-        ArrayUtils.deleteByIndex(orders,index);
-        orderIndex--;
-    }
-
-    public void printOrders () {
-        for (Order u: orders) {
-            System.out.println(u);
-        }
-    }
-
-    public Integer findOrderIndexByEntity(Order order) {
+    @Override
+    public Integer findIndexByEntity(TravelCompanyRepo order) {
         for (int i = 0; i < orders.length; i++) {
             if (orders[i].equals(order)) {
                 return i;
@@ -61,7 +40,30 @@ public class OrderMemoryRepo {
         return null;
     }
 
-    public Integer findOrderIndexById (Long id) {
+    @Override
+    public Order findByID (long id) {
+        Integer index = findIndexById(id);
+        if (index!=null) {
+            return orders[index];
+        }
+        return null;
+    }
+
+    @Override
+    protected void deleteByIndex (int index) {
+        ArrayUtils.deleteByIndex(orders,index);
+        orderIndex--;
+    }
+
+    @Override
+    public void print () {
+        for (Order u: orders) {
+            System.out.println(u);
+        }
+    }
+
+    @Override
+    public Integer findIndexById (Long id) {
         for (int i = 0; i < orders.length; i++) {
             if (orders[i].getId().equals(id)) {
                 return i;
