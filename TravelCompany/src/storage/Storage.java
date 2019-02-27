@@ -1,14 +1,17 @@
 package storage;
 
 import city.City;
+import city.domain.City;
 import country.Country;
-import order.Order;
-import user.User;
+import user.domain.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Storage {
     private static final int CAPACITY = 3;
-    public static User[] users = new User[CAPACITY];
-    public static Order[] orders = new Order[CAPACITY];
-    public static Country[] countries = new Country[CAPACITY];
-    public static City[] cities = new City[CAPACITY];
+    public static List<User> users = new ArrayList<>(CAPACITY);
+    public static List<City> cities = new ArrayList<>(CAPACITY);
+    public static List<Country> countries = new ArrayList<>(CAPACITY);
+    public static List<City> cities = new ArrayList<>(CAPACITY);
 }

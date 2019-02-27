@@ -2,8 +2,7 @@ package baseservice;
 
 import base.TravelCompanyRepo;
 import baserepo.AbstractMemoryRepo;
-import user.User;
-import user.repo.UserMemoryRepo;
+import user.domain.User;
 
 public abstract class AbstractMemoryService {
 
