@@ -12,9 +12,9 @@ public abstract class AbstractMemoryService {
         repo.add(travelCompanyRepo);
     }
 
-    public User findByID(long id) {
+   /* public User findByID(long id) {
         return repo.findByID(id);
-    }
+    }*/
 
     public void delete(TravelCompanyRepo travelCompanyRepo) {
         repo.delete(travelCompanyRepo);
