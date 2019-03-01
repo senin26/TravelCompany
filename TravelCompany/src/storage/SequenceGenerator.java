@@ -1,13 +1,13 @@
 package storage;
 
-    public final class SequenceGenerator {
-        private static long value = 0;
+public final class SequenceGenerator {
 
-        private SequenceGenerator() {
+    private static long val;
 
-        }
+    private SequenceGenerator() {
+    }
 
-        public static long getNextValue() {
-            return ++value;
-        }
+    public static long getVal(){
+        return val++;
+    }
 }

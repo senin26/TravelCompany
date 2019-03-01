@@ -3,6 +3,7 @@ package user.repo.impl;
 import base.TravelCompanyRepo;
 import baserepo.AbstractMemoryRepo;
 
+import storage.SequenceGenerator;
 import user.domain.User;
 import user.repo.UserRepo;
 import user.search.UserSearchCondition;
@@ -17,6 +18,7 @@ public class UserMemoryCollectionRepo implements UserRepo {
     @Override
     public void add (User user) {
         usersList.add(user);
+        user.setId(SequenceGenerator.getVal());
     }
 
     @Override

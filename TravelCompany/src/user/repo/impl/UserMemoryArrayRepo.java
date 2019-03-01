@@ -24,7 +24,7 @@ public class UserMemoryArrayRepo implements UserRepo {
         }
 
         userIndex++;
-        user.setId(SequenceGenerator.getNextValue());
+        user.setId(SequenceGenerator.getVal());
         usersArray[userIndex] = user;
 
     }
