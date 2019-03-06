@@ -5,12 +5,13 @@ import storage.SequenceGenerator;
 import user.domain.User;
 import user.repo.UserRepo;
 import user.search.UserSearchCondition;
+import user.search.UserSearchResult;
+import user.search.UserSearchUtility;
 
 import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.usersArray;
-import static storage.Storage.userSequenceGenerator;
 
 public class UserMemoryArrayRepo implements UserRepo {
 
@@ -25,7 +26,7 @@ public class UserMemoryArrayRepo implements UserRepo {
         }
 
         userIndex++;
-        user.setId(userSequenceGenerator.getVal());
+        user.setId(SequenceGenerator.getVal());
         usersArray[userIndex] = user;
 
     }
@@ -47,7 +48,8 @@ public class UserMemoryArrayRepo implements UserRepo {
 
     @Override
     public List<User> search(UserSearchCondition searchCondition) {
-        return Collections.emptyList();
+        UserSearchResult userSearchResult = UserSearchUtility.getUserSearchResult(searchCondition);
+        return userSearchResult.getSearchResult();
     }
 
     @Override

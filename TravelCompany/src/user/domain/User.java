@@ -20,10 +20,6 @@ public class User extends BaseDomain {
     private static SequenceGenerator sequenceGenerator;
     //todo implement Builder pattern here!
 
-    static {
-        sequenceGenerator = new UserSequenceGenerator();
-    }
-
     public User() {
     }
 
@@ -82,15 +78,15 @@ public class User extends BaseDomain {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", passportSerialNum=" + passportSerialNum +
-                ", passportNum=" + passportNum +
-                ", age=" + age +
-                ", cities=" + Arrays.toString(orders) +
-                '}';
+        return  "\n" + "User {" + "\n" +
+                "id=" + id + "\n" +
+                "firstName='" + firstName + '\'' + "\n" +
+                "lastName='" + lastName + '\'' + "\n" +
+                "passportSerialNum=" + passportSerialNum + "\n" +
+                "passportNum=" + passportNum + "\n" +
+                "age=" + age + "\n" +
+                "cities=" + Arrays.toString(orders) + "\n" +
+                "}";
     }
 
     public ClientType getClientType() {

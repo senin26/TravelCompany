@@ -13,13 +13,11 @@ public final class UserServiceCreator {
 
     public static UserService getUserService(StorageType storageType) {
         switch (storageType) {
-
             case MEMORY_ARRAY:
                 return new UserDefaultService(new UserMemoryArrayRepo());
 
-            case MEMORY_COLLECTION:{
+            case MEMORY_COLLECTION:
                 return new UserDefaultService(new UserMemoryCollectionRepo());
-            }
 
             default: {
                 return null;
