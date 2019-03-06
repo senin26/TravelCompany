@@ -22,33 +22,16 @@ public class UserSearchCondition extends BaseSearchCondition {
         sortingList.sort(new Comparator<User>() {
             @Override
             public int compare(User u1, User u2) {
-                int res = 0;
                 if (sortUserType.equals(SortUserType.BY_NAME)) {
-                    if (u1.getFirstName().compareTo(u2.getFirstName()) > 0)
-                        res = 1;
-                    if (u1.getFirstName().compareTo(u2.getFirstName()) < 0)
-                        res = -1;
-                    if (u1.getFirstName().compareTo(u2.getFirstName()) == 0)
-                        res = 0;
+                    return u1.getFirstName().compareTo(u2.getFirstName());
                 }
                 if (sortUserType.equals(SortUserType.BY_LAST_NAME)) {
-                    if (u1.getLastName().compareTo(u2.getLastName()) > 0)
-                        res = 1;
-                    if (u1.getLastName().compareTo(u2.getLastName()) < 0)
-                        res = -1;
-                    if (u1.getLastName().compareTo(u2.getLastName()) == 0)
-                        res = 0;
+                    return u1.getLastName().compareTo(u2.getLastName());
                 }
                 if (sortUserType.equals(SortUserType.BY_AGE)) {
-                    if (u1.getAge() > u2.getAge())
-                        return 1;
-                    if (u1.getAge() < u2.getAge())
-                        return -1;
-                    if (u1.getAge() == u2.getAge())
-                        return 0;
+                    return Integer.compare(u1.getAge(), u2.getAge());
                 }
-
-                return res;
+                return 0;
             }
         });
         return sortingList;
