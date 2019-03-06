@@ -24,7 +24,7 @@ public class CityMemoryArrayRepo implements CityRepo {
         }
 
         cityIndex++;
-        city.setId(SequenceGenerator.getNextValue());
+        city.setId(SequenceGenerator.getVal());
         citiesArray[cityIndex] = city;
     }
 

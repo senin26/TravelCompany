@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.ordersArray;
-import static storage.Storage.ordersArray;
 
 public class OrderMemoryArrayRepo implements OrderRepo {
 
@@ -27,7 +26,7 @@ public class OrderMemoryArrayRepo implements OrderRepo {
         }
 
         orderIndex++;
-        order.setId(SequenceGenerator.getNextValue());
+        order.setId(SequenceGenerator.getVal());
         ordersArray[orderIndex] = order;
     }
 

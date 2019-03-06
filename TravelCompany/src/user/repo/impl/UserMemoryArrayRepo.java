@@ -5,6 +5,8 @@ import storage.SequenceGenerator;
 import user.domain.User;
 import user.repo.UserRepo;
 import user.search.UserSearchCondition;
+import user.search.UserSearchResult;
+import user.search.UserSearchUtility;
 
 import java.util.Collections;
 import java.util.List;
@@ -46,7 +48,8 @@ public class UserMemoryArrayRepo implements UserRepo {
 
     @Override
     public List<User> search(UserSearchCondition searchCondition) {
-        return Collections.emptyList();
+        UserSearchResult userSearchResult = UserSearchUtility.getUserSearchResult(searchCondition);
+        return userSearchResult.getSearchResult();
     }
 
     @Override

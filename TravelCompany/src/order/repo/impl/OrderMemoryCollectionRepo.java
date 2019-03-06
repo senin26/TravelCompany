@@ -3,6 +3,8 @@ package order.repo.impl;
 import order.repo.OrderRepo;
 import order.domain.Order;
 import order.search.OrderSearchCondition;
+import storage.SequenceGenerator;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class OrderMemoryCollectionRepo implements OrderRepo {
     @Override
     public void add (Order order) {
         ordersList.add(order);
+        order.setId(SequenceGenerator.getVal());
     }
 
     @Override

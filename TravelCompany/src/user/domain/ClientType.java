@@ -15,14 +15,14 @@ public enum  ClientType {
     private static Map<String, ClientType> clientTypeMap = new HashMap<String, ClientType>();
     
     static {
-       /* ClientType[] clientTypes = ClientType.values();
+        ClientType[] clientTypes = ClientType.values();
         for (int i = 0; i < clientTypes.length; i++) {
             clientTypeMap.put(clientTypes[i].name(),clientTypes[i]);
-        }*/
-        for (ClientType ct:
+        }
+        /*for (ClientType ct:
              ClientType.values()) {
             clientTypeMap.put(ct.name(),ct);
-        }
+        }*/
     }
     
     public static boolean isStrBelongsToEnum(String string){

@@ -1,6 +1,6 @@
 package storage;
 
-public final class SequenceGenerator {
+public class SequenceGenerator {
 
     private static long val;
 
@@ -10,4 +10,6 @@ public final class SequenceGenerator {
     public static long getVal(){
         return val++;
     }
+
+
 }

@@ -26,7 +26,7 @@ public class CountryMemoryArrayRepo implements CountryRepo {
         }
 
         countryIndex++;
-        country.setId(SequenceGenerator.getNextValue());
+        country.setId(SequenceGenerator.getVal());
         countriesArray[countryIndex] = country;
     }
 
