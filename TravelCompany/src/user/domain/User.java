@@ -2,6 +2,7 @@ package user.domain;
 
 import common.business.domain.BaseDomain;
 import order.domain.Order;
+import storage.SequenceGenerator;
 
 import java.util.Arrays;
 
@@ -16,8 +17,12 @@ public class User extends BaseDomain {
     private Order[] orders;
     private ClientType clientType;
     private int discountPercent;
-
+    private static SequenceGenerator sequenceGenerator;
     //todo implement Builder pattern here!
+
+    static {
+        sequenceGenerator = new UserSequenceGenerator();
+    }
 
     public User() {
     }

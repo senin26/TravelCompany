@@ -12,13 +12,15 @@ import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.usersList;
+import static storage.Storage.userSequenceGenerator;
+
 
 public class UserMemoryCollectionRepo implements UserRepo {
 
     @Override
     public void add (User user) {
         usersList.add(user);
-        user.setId(SequenceGenerator.getVal());
+        user.setId(userSequenceGenerator.getVal());
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.usersArray;
+import static storage.Storage.userSequenceGenerator;
 
 public class UserMemoryArrayRepo implements UserRepo {
 
@@ -24,7 +25,7 @@ public class UserMemoryArrayRepo implements UserRepo {
         }
 
         userIndex++;
-        user.setId(SequenceGenerator.getVal());
+        user.setId(userSequenceGenerator.getVal());
         usersArray[userIndex] = user;
 
     }

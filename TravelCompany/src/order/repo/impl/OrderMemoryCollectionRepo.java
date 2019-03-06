@@ -7,12 +7,14 @@ import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.ordersList;
+import static storage.Storage.orderSequenceGenerator;
 
 public class OrderMemoryCollectionRepo implements OrderRepo {
 
     @Override
     public void add (Order order) {
         ordersList.add(order);
+        order.setId(orderSequenceGenerator.getVal());
     }
 
     @Override
