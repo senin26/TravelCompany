@@ -16,7 +16,6 @@ public class Application {
         userService.add(new User("Viacheslav", "Kosogor", 24));
         userService.add(new User("Evgenii", "Gordon", 25));
         userService.add(new User("Yana", "Chernyshiova", 22));
-
         UserSearchCondition userSearchCondition = UserSearchUtility.getUserSearchCondition(SortUserType.BY_AGE);
         System.out.println(userService.search(userSearchCondition));
 
