@@ -12,12 +12,12 @@ import static storage.Storage.citiesList;
 public class CityMemoryCollectionRepo implements CityRepo {
     
     @Override
-    public void add (City city) {
-        citiesList.add(city);
+    public void add (Object city) {
+        citiesList.add((City) city);
     }
 
     @Override
-    public void update(City city) {
+    public void update(Object city) {
 
     }
 
@@ -27,7 +27,7 @@ public class CityMemoryCollectionRepo implements CityRepo {
     }
 
     @Override
-    public List<City> search(CitySearchCondition searchCondition) {
+    public List<City> search(Object searchCondition) {
         return Collections.emptyList();
     }
 

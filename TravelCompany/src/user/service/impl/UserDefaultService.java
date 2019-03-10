@@ -1,6 +1,5 @@
 package user.service.impl;
 
-import baseservice.AbstractMemoryService;
 import user.domain.User;
 import user.repo.UserRepo;
 import user.search.UserSearchCondition;

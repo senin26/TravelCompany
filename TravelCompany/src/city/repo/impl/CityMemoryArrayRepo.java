@@ -16,7 +16,7 @@ public class CityMemoryArrayRepo implements CityRepo {
     private int cityIndex = -1;
 
     @Override
-    public void add(City city) {
+    public void add(Object city) {
         if (cityIndex == citiesArray.length - 1) {
             City[] newArrCitys = new City[citiesArray.length * 2];
             System.arraycopy(citiesArray, 0, newArrCitys, 0, citiesArray.length);
@@ -24,12 +24,12 @@ public class CityMemoryArrayRepo implements CityRepo {
         }
 
         cityIndex++;
-        city.setId(SequenceGenerator.getVal());
-        citiesArray[cityIndex] = city;
+        ((City) city).setId(SequenceGenerator.getVal());
+        citiesArray[cityIndex] = ((City) city);
     }
 
     @Override
-    public void update(City city) {
+    public void update(Object city) {
         //we already in memory, no need to update object
     }
 
@@ -44,7 +44,7 @@ public class CityMemoryArrayRepo implements CityRepo {
     }
 
     @Override
-    public List<City> search(CitySearchCondition searchCondition) {
+    public List<City> search(Object searchCondition) {
         return Collections.emptyList();
     }
 

@@ -2,12 +2,8 @@ package country.service;
 
 import country.domain.Country;
 import common.business.service.BaseService;
+import country.search.CountrySearchCondition;
 
-public interface CountryService extends BaseService {
+public interface CountryService extends BaseService<Country, CountrySearchCondition> {
 
-    void add(Country country);
-
-    Country findById(Long id);
-
-    void delete(Country country);
 }

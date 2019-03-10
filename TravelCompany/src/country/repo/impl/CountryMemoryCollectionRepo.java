@@ -13,12 +13,12 @@ import static storage.Storage.countriesList;
 public class CountryMemoryCollectionRepo implements CountryRepo {
 
     @Override
-    public void add (Country country) {
-        countriesList.add(country);
+    public void add (Object country) {
+        countriesList.add((Country) country);
     }
 
     @Override
-    public void update(Country country) {
+    public void update(Object country) {
 
     }
 
@@ -28,7 +28,7 @@ public class CountryMemoryCollectionRepo implements CountryRepo {
     }
 
     @Override
-    public List<Country> search(CountrySearchCondition searchCondition) {
+    public List<Country> search(Object searchCondition) {
         return Collections.emptyList();
     }
 

@@ -2,7 +2,10 @@ package order.service.impl;
 
 import order.domain.Order;
 import order.repo.OrderRepo;
+import order.search.OrderSearchCondition;
 import order.service.OrderService;
+
+import java.util.List;
 
 
 public class OrderDefaultService implements OrderService {
@@ -21,9 +24,21 @@ public class OrderDefaultService implements OrderService {
     }
 
     @Override
+    public List<Order> search(OrderSearchCondition searchCondition) {
+        return orderRepo.search(searchCondition);
+    }
+
+    @Override
+    public void update(Order order) {
+        if (order.getId() != null) {
+            orderRepo.update(order);
+        }
+    }
+
+    @Override
     public Order findById(Long id) {
         if (id != null) {
-            return orderRepo.findById(id);
+            return (Order) orderRepo.findById(id);
         } else {
             return null;
         }

@@ -79,6 +79,15 @@ public class User extends BaseDomain {
     @Override
     public String toString() {
         return  "\n" + "User {" + "\n" +
+                "firstName='" + firstName + '\'' + "\n" +
+                "lastName='" + lastName + '\'' + "\n" +
+                "age=" + age + "\n" +
+                "}";
+    }
+
+    /*@Override
+    public String toString() {
+        return  "\n" + "User {" + "\n" +
                 "id=" + id + "\n" +
                 "firstName='" + firstName + '\'' + "\n" +
                 "lastName='" + lastName + '\'' + "\n" +
@@ -87,7 +96,7 @@ public class User extends BaseDomain {
                 "age=" + age + "\n" +
                 "cities=" + Arrays.toString(orders) + "\n" +
                 "}";
-    }
+    }*/
 
     public ClientType getClientType() {
         return clientType;

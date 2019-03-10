@@ -2,7 +2,10 @@ package country.service.impl;
 
 import country.domain.Country;
 import country.repo.CountryRepo;
+import country.search.CountrySearchCondition;
 import country.service.CountryService;
+
+import java.util.List;
 
 
 public class CountryDefaultService implements CountryService {
@@ -23,9 +26,21 @@ public class CountryDefaultService implements CountryService {
     @Override
     public Country findById(Long id) {
         if (id != null) {
-            return countryRepo.findById(id);
+            return (Country) countryRepo.findById(id);
         } else {
             return null;
+        }
+    }
+
+    @Override
+    public List<Country> search(CountrySearchCondition searchCondition) {
+        return countryRepo.search(searchCondition);
+    }
+
+    @Override
+    public void update(Country country) {
+        if (country.getId() != null) {
+            countryRepo.update(country);
         }
     }
 

@@ -1,8 +1,5 @@
 package user.repo.impl;
 
-import base.TravelCompanyRepo;
-import baserepo.AbstractMemoryRepo;
-
 import storage.SequenceGenerator;
 import user.domain.User;
 import user.repo.UserRepo;
@@ -16,7 +13,7 @@ import java.util.List;
 import static storage.Storage.usersList;
 
 
-public class UserMemoryCollectionRepo implements UserRepo {
+public class UserMemoryCollectionRepo implements UserRepo{
 
     @Override
     public void add (User user) {
@@ -26,7 +23,7 @@ public class UserMemoryCollectionRepo implements UserRepo {
 
     @Override
     public void update(User user) {
-
+        //we already in memory, no need to update object
     }
 
     @Override

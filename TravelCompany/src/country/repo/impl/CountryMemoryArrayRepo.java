@@ -1,5 +1,6 @@
 package country.repo.impl;
 
+import com.sun.org.apache.xml.internal.security.signature.ObjectContainer;
 import common.solutions.utils.ArrayUtils;
 import country.domain.Country;
 import country.repo.CountryRepo;
@@ -18,7 +19,7 @@ public class CountryMemoryArrayRepo implements CountryRepo {
     private int countryIndex = -1;
 
     @Override
-    public void add(Country country) {
+    public void add(Object country) {
         if (countryIndex == countriesArray.length - 1) {
             Country[] newArrCountrys = new Country[countriesArray.length * 2];
             System.arraycopy(countriesArray, 0, newArrCountrys, 0, countriesArray.length);
@@ -26,12 +27,12 @@ public class CountryMemoryArrayRepo implements CountryRepo {
         }
 
         countryIndex++;
-        country.setId(SequenceGenerator.getVal());
-        countriesArray[countryIndex] = country;
+        ((Country) country).setId(SequenceGenerator.getVal());
+        countriesArray[countryIndex] = ((Country) country);
     }
 
     @Override
-    public void update(Country country) {
+    public void update(Object country) {
         //we already in memory, no need to update object
     }
 
@@ -46,7 +47,7 @@ public class CountryMemoryArrayRepo implements CountryRepo {
     }
 
     @Override
-    public List<Country> search(CountrySearchCondition searchCondition) {
+    public List<Country> search(Object searchCondition) {
         return Collections.emptyList();
     }
 

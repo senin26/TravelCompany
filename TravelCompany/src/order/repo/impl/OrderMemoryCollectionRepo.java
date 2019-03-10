@@ -13,14 +13,13 @@ import static storage.Storage.ordersList;
 public class OrderMemoryCollectionRepo implements OrderRepo {
 
     @Override
-    public void add (Order order) {
-        ordersList.add(order);
-        order.setId(SequenceGenerator.getVal());
+    public void add (Object order) {
+        ordersList.add((Order) order);
+        ((Order) order).setId(SequenceGenerator.getVal());
     }
 
     @Override
-    public void update(Order order) {
-
+    public void update(Object o) {
     }
 
     @Override
@@ -29,7 +28,7 @@ public class OrderMemoryCollectionRepo implements OrderRepo {
     }
 
     @Override
-    public List<Order> search(OrderSearchCondition searchCondition) {
+    public List search(Object searchCondition) {
         return Collections.emptyList();
     }
 

@@ -18,7 +18,7 @@ public class OrderMemoryArrayRepo implements OrderRepo {
     private int orderIndex = -1;
 
     @Override
-    public void add(Order order) {
+    public void add(Object order) {
         if (orderIndex == ordersArray.length - 1) {
             Order[] newArrOrders = new Order[ordersArray.length * 2];
             System.arraycopy(ordersArray, 0, newArrOrders, 0, ordersArray.length);
@@ -26,12 +26,12 @@ public class OrderMemoryArrayRepo implements OrderRepo {
         }
 
         orderIndex++;
-        order.setId(SequenceGenerator.getVal());
-        ordersArray[orderIndex] = order;
+        ((Order) order).setId(SequenceGenerator.getVal());
+        ordersArray[orderIndex] = ((Order) order);
     }
 
     @Override
-    public void update(Order order) {
+    public void update(Object order) {
         //we already in memory, no need to update object
     }
 
@@ -46,7 +46,7 @@ public class OrderMemoryArrayRepo implements OrderRepo {
     }
 
     @Override
-    public List<Order> search(OrderSearchCondition searchCondition) {
+    public List search(Object searchCondition) {
         return Collections.emptyList();
     }
 

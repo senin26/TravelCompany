@@ -8,7 +8,6 @@ import user.search.UserSearchCondition;
 import user.search.UserSearchResult;
 import user.search.UserSearchUtility;
 
-import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.usersArray;
@@ -24,7 +23,6 @@ public class UserMemoryArrayRepo implements UserRepo {
             System.arraycopy(usersArray, 0, newArrUsers, 0, usersArray.length);
             usersArray = newArrUsers;
         }
-
         userIndex++;
         user.setId(SequenceGenerator.getVal());
         usersArray[userIndex] = user;
@@ -32,9 +30,17 @@ public class UserMemoryArrayRepo implements UserRepo {
     }
 
     @Override
+    public List search(UserSearchCondition searchCondition) {
+        UserSearchResult userSearchResult = UserSearchUtility.getUserSearchResult(searchCondition);
+        return userSearchResult.getSearchResult();
+    }
+
+
+    @Override
     public void update(User user) {
         //we already in memory, no need to update object
     }
+
 
     @Override
     public User findById(long id) {
@@ -44,12 +50,6 @@ public class UserMemoryArrayRepo implements UserRepo {
         }
 
         return null;
-    }
-
-    @Override
-    public List<User> search(UserSearchCondition searchCondition) {
-        UserSearchResult userSearchResult = UserSearchUtility.getUserSearchResult(searchCondition);
-        return userSearchResult.getSearchResult();
     }
 
     @Override
