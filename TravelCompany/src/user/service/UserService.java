@@ -6,5 +6,6 @@ import user.search.UserSearchCondition;
 
 import java.util.List;
 
-public interface UserService extends BaseService<User, UserSearchCondition> {
+public interface UserService extends BaseService<User, Long> {
+    List<User> search(UserSearchCondition searchCondition);
 }

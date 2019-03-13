@@ -1,11 +1,6 @@
 package country.repo;
 
-import country.domain.Country;
-import common.business.repo.BaseRepo;
-import country.domain.Country;
-import country.search.CountrySearchCondition;
-
-import java.util.List;
+import common.solutions.repo.BaseRepo;
 
 public interface CountryRepo extends BaseRepo {
 

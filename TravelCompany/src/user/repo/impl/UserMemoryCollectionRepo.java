@@ -17,8 +17,8 @@ public class UserMemoryCollectionRepo implements UserRepo{
 
     @Override
     public void add (User user) {
-        usersList.add(user);
         user.setId(SequenceGenerator.getVal());
+        usersList.add(user);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class UserMemoryCollectionRepo implements UserRepo{
     }
 
     @Override
-    public User findById(long id) {
+    public User findById(Long id) {
         return findUserById(id);
     }
 

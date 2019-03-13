@@ -3,7 +3,7 @@ package user.search;
 import common.business.search.BaseSearchCondition;
 import user.search.sort.*;
 
-public class UserSearchCondition extends BaseSearchCondition {
+public class UserSearchCondition extends BaseSearchCondition<Long> {
 
     private SortCondition sortCondition;
 

@@ -1,6 +1,5 @@
 package country.domain;
 
-import base.TravelCompanyRepo;
 import common.business.domain.BaseDomain;
 
 public class Country extends BaseDomain {

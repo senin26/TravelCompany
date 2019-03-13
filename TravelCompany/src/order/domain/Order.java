@@ -1,6 +1,5 @@
 package order.domain;
 
-import base.TravelCompanyRepo;
 import common.business.domain.BaseDomain;
 
 public class Order extends BaseDomain {

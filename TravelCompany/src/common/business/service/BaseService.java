@@ -5,17 +5,15 @@ import user.search.UserSearchCondition;
 
 import java.util.List;
 
-public interface BaseService<T, SearchCondition> {
+public interface BaseService<TYPE, ID> {
 
-    void add(T t);
+    void add(TYPE t);
 
-    T findById(Long id);
+    TYPE findById(Long id);
 
-    void delete(T t);
+    void delete(TYPE t);
 
-    List<T> search(SearchCondition searchCondition);
-
-    void update(T t);
+    void update(TYPE t);
 
     void deleteById(Long id);
 
