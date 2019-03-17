@@ -1,7 +1,11 @@
 package order.repo;
 
 import common.solutions.repo.BaseRepo;
+import order.domain.Order;
+import order.search.OrderSearchCondition;
 
-public interface OrderRepo extends BaseRepo {
+import java.util.List;
 
+public interface OrderRepo extends BaseRepo<Order, Long> {
+    List<Order> search(OrderSearchCondition userSearchCondition);
 }

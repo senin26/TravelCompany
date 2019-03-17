@@ -43,7 +43,7 @@ public class UserMemoryArrayRepo implements UserRepo {
 
 
     @Override
-    public User findById(long id) {
+    public User findById(Long id) {
         Integer userIndex = findUserIndexById(id);
         if (userIndex != null) {
             return usersArray[userIndex];
@@ -53,7 +53,7 @@ public class UserMemoryArrayRepo implements UserRepo {
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         Integer userIndex = findUserIndexById(id);
 
         if (userIndex != null) {

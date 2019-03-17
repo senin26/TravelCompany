@@ -38,7 +38,7 @@ public class UserMemoryCollectionRepo implements UserRepo{
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
        User found = findUserById(id);
 
         if (found!=null) {

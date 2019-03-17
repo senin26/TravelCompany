@@ -4,8 +4,6 @@ import common.solutions.utils.ArrayUtils;
 import country.domain.Country;
 import country.repo.CountryRepo;
 import country.search.CountrySearchCondition;
-import country.domain.Country;
-import country.search.CountrySearchCondition;
 import storage.SequenceGenerator;
 
 import java.util.Collections;
@@ -18,7 +16,7 @@ public class CountryMemoryArrayRepo implements CountryRepo {
     private int countryIndex = -1;
 
     @Override
-    public void add(Object country) {
+    public void add(Country country) {
         if (countryIndex == countriesArray.length - 1) {
             Country[] newArrCountrys = new Country[countriesArray.length * 2];
             System.arraycopy(countriesArray, 0, newArrCountrys, 0, countriesArray.length);
@@ -26,17 +24,17 @@ public class CountryMemoryArrayRepo implements CountryRepo {
         }
 
         countryIndex++;
-        ((Country) country).setId(SequenceGenerator.getVal());
-        countriesArray[countryIndex] = ((Country) country);
+        country.setId(SequenceGenerator.getVal());
+        countriesArray[countryIndex] = country;
     }
 
     @Override
-    public void update(Object country) {
+    public void update(Country country) {
         //we already in memory, no need to update object
     }
 
     @Override
-    public Country findById(long id) {
+    public Country findById(Long id) {
         Integer countryIndex = findCountryIndexById(id);
         if (countryIndex != null) {
             return countriesArray[countryIndex];
@@ -46,12 +44,12 @@ public class CountryMemoryArrayRepo implements CountryRepo {
     }
 
     @Override
-    public List<Country> search(Object searchCondition) {
+    public List<Country> search(CountrySearchCondition searchCondition) {
         return Collections.emptyList();
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         Integer countryIndex = findCountryIndexById(id);
 
         if (countryIndex != null) {

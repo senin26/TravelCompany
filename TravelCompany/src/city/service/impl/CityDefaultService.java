@@ -27,7 +27,7 @@ public class CityDefaultService implements CityService {
     @Override
     public City findById(Long id) {
         if (id != null) {
-            return (City) cityRepo.findById(id);
+            return cityRepo.findById(id);
         } else {
             return null;
         }

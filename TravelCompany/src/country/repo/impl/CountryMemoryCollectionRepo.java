@@ -2,7 +2,6 @@ package country.repo.impl;
 
 import country.domain.Country;
 import country.repo.CountryRepo;
-import country.domain.Country;
 import country.search.CountrySearchCondition;
 
 import java.util.Collections;
@@ -13,27 +12,27 @@ import static storage.Storage.countriesList;
 public class CountryMemoryCollectionRepo implements CountryRepo {
 
     @Override
-    public void add (Object country) {
-        countriesList.add((Country) country);
+    public void add (Country country) {
+        countriesList.add(country);
     }
 
     @Override
-    public void update(Object country) {
+    public void update(Country country) {
 
     }
 
     @Override
-    public Country findById(long id) {
+    public Country findById(Long id) {
         return findCountryById(id);
     }
 
     @Override
-    public List<Country> search(Object searchCondition) {
+    public List<Country> search(CountrySearchCondition searchCondition) {
         return Collections.emptyList();
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         Country found = findCountryById(id);
 
         if (found!=null) {

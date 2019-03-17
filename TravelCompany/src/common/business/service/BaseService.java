@@ -9,13 +9,13 @@ public interface BaseService<TYPE, ID> {
 
     void add(TYPE t);
 
-    TYPE findById(Long id);
+    TYPE findById(ID id);
 
     void delete(TYPE t);
 
     void update(TYPE t);
 
-    void deleteById(Long id);
+    void deleteById(ID id);
 
     void printAll();
 

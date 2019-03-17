@@ -7,7 +7,6 @@ import country.service.CountryService;
 
 import java.util.List;
 
-
 public class CountryDefaultService implements CountryService {
 
     private final CountryRepo countryRepo;
@@ -26,7 +25,7 @@ public class CountryDefaultService implements CountryService {
     @Override
     public Country findById(Long id) {
         if (id != null) {
-            return (Country) countryRepo.findById(id);
+            return countryRepo.findById(id);
         } else {
             return null;
         }

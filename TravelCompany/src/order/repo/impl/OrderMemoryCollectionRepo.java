@@ -13,27 +13,27 @@ import static storage.Storage.ordersList;
 public class OrderMemoryCollectionRepo implements OrderRepo {
 
     @Override
-    public void add (Object order) {
-        ordersList.add((Order) order);
+    public void add (Order order) {
+        ordersList.add(order);
         ((Order) order).setId(SequenceGenerator.getVal());
     }
 
     @Override
-    public void update(Object o) {
+    public void update(Order o) {
     }
 
     @Override
-    public Order findById(long id) {
+    public Order findById(Long id) {
         return findOrderById(id);
     }
 
     @Override
-    public List search(Object searchCondition) {
+    public List search(OrderSearchCondition searchCondition) {
         return Collections.emptyList();
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(Long id) {
         Order found = findOrderById(id);
 
         if (found!=null) {

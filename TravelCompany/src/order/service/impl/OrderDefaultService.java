@@ -38,7 +38,7 @@ public class OrderDefaultService implements OrderService {
     @Override
     public Order findById(Long id) {
         if (id != null) {
-            return (Order) orderRepo.findById(id);
+            return orderRepo.findById(id);
         } else {
             return null;
         }

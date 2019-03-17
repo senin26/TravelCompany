@@ -4,5 +4,8 @@ import order.domain.Order;
 import common.business.service.BaseService;
 import order.search.OrderSearchCondition;
 
-public interface OrderService extends BaseService<Order, OrderSearchCondition> {
+import java.util.List;
+
+public interface OrderService extends BaseService<Order, Long> {
+    List<Order> search(OrderSearchCondition searchCondition);
 }

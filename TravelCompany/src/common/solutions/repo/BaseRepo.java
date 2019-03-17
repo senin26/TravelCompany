@@ -8,7 +8,7 @@ public interface BaseRepo<TYPE, ID> {
 
     TYPE findById(ID id);
 
-    void deleteById(long id);
+    void deleteById(ID id);
 
     void printAll();
 
