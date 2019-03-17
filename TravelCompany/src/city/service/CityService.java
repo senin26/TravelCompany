@@ -2,7 +2,7 @@ package city.service;
 
 import city.domain.City;
 import city.search.CitySearchCondition;
-import common.business.service.BaseService;
+import common.solutions.service.BaseService;
 
 import java.util.List;
 

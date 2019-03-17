@@ -1,6 +1,6 @@
 package user.service;
 
-import common.business.service.BaseService;
+import common.solutions.service.BaseService;
 import user.domain.User;
 import user.search.UserSearchCondition;
 

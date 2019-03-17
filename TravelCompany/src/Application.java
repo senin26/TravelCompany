@@ -1,4 +1,10 @@
+import city.service.CityServiceCreator;
+import city.service.impl.CityDefaultService;
 import common.business.application.StorageType;
+import country.service.CountryServiceCreator;
+import country.service.impl.CountryDefaultService;
+import order.service.OrderServiceCreator;
+import order.service.impl.OrderDefaultService;
 import user.domain.User;
 import user.search.sort.SortComplexityType;
 import user.search.sort.SortCondition;
@@ -14,6 +20,10 @@ public class Application {
     public static void main(String[] args) {
 
         UserDefaultService userService = (UserDefaultService) UserServiceCreator.getUserService(StorageType.MEMORY_COLLECTION);
+        OrderDefaultService orderDefaultService = (OrderDefaultService) OrderServiceCreator.getOrderService(StorageType.MEMORY_COLLECTION);
+        CountryDefaultService countryDefaultService = (CountryDefaultService) CountryServiceCreator.getCountryService(StorageType.MEMORY_COLLECTION);
+        CityDefaultService cityDefaultService = (CityDefaultService) CityServiceCreator.getCityService(StorageType.MEMORY_COLLECTION);
+
         userService.add(new User("Max", "Kuznetsov", 27));
         userService.add(new User("Evgenii", "Nezalezniy", 31));
         userService.add(new User("Oksana", "Smirnova", 23));

@@ -1,4 +1,4 @@
-package common.business.service;
+package common.solutions.service;
 
 import user.domain.User;
 import user.search.UserSearchCondition;

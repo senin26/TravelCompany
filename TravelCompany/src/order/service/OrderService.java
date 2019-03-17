@@ -1,7 +1,7 @@
 package order.service;
 
 import order.domain.Order;
-import common.business.service.BaseService;
+import common.solutions.service.BaseService;
 import order.search.OrderSearchCondition;
 
 import java.util.List;
