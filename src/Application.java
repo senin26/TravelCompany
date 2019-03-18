@@ -5,9 +5,7 @@ import country.service.CountryServiceCreator;
 import country.service.impl.CountryDefaultService;
 import order.service.OrderServiceCreator;
 import order.service.impl.OrderDefaultService;
-import user.domain.User;
 import user.search.sort.SortComplexityType;
-import user.search.sort.SortCondition;
 import user.search.sort.SortOrderDirection;
 import user.search.sort.SortUserField;
 import user.search.UserSearchCondition;
@@ -26,7 +24,7 @@ public class Application {
         CountryDefaultService countryDefaultService = (CountryDefaultService) CountryServiceCreator.getCountryService(StorageType.MEMORY_COLLECTION);
         CityDefaultService cityDefaultService = (CityDefaultService) CityServiceCreator.getCityService(StorageType.MEMORY_COLLECTION);
 
-        String path = "E:\\Serj\\EPAM\\TravelCompany\\TravelCompany\\src\\common\\business\\database\\usersCSV\\Users";
+        String path = "E:\\Serj\\EPAM\\TravelCompany\\src\\common\\business\\database\\usersCSV\\Users";
 
         UserCSV_FileHandler userCSV_fileHandler = UserCSV_ServiceCreator.getUserCSV_FileHandler(path, userService);
         userCSV_fileHandler.addUsersFromCSV();
