@@ -1,0 +1,17 @@
+<countries>
+    <country>
+        <name>Russia</name>
+        <climate>Cold</climate>
+        <capital>Moscow</capital>
+    </country>
+    <country>
+        <name>USA</name>
+        <climate>Warm</climate>
+        <capital>Washington</capital>
+    </country>
+    <country>
+        <name>Netherlands</name>
+        <climate>Warm</climate>
+        <capital>Amsterdam</capital>
+    </country>
+</countries>

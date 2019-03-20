@@ -1,0 +1,17 @@
+<cities>
+    <city>
+        <name>Saint-Petersburg</name>
+        <country>Russia</country>
+        <population>5_000_000</population>
+    </city>
+    <city>
+        <name>New-York</name>
+        <country>USA</country>
+        <population>8_400_000</population>
+    </city>
+    <city>
+        <name>Amsterdam</name>
+        <country>Netherlands</country>
+        <population>820_000</population>
+    </city>
+</cities>
