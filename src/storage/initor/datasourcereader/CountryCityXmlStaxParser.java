@@ -4,8 +4,6 @@ import city.domain.City;
 import country.domain.Climate;
 import country.domain.Country;
 import common.solutions.xml.stax.parse.CustomStaxReader;
-
-
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -17,21 +15,15 @@ import static common.solutions.xml.stax.XmlStaxUtils.readContent;
 
 public class CountryCityXmlStaxParser implements FileParser {
 
-
     private final RuntimeException NO_END_TAG_FOUND_EXCEPTION = new RuntimeException("Suitable end tag NOT found");
 
     @Override
     public List<Country> parseFile(String file) throws Exception {
-
         List<Country> result = new ArrayList<>();
-
         try (CustomStaxReader staxReader = CustomStaxReader.newInstance(file)) {
-
             XMLStreamReader reader = staxReader.getReader();
-
             while (reader.hasNext()) {
                 int eventType = reader.next();
-
                 switch (eventType) {
                     case XMLStreamReader.START_ELEMENT: {
                         String tagName = reader.getLocalName();
@@ -40,24 +32,19 @@ public class CountryCityXmlStaxParser implements FileParser {
                         }
                         break;
                     }
-
                     case XMLStreamConstants.END_ELEMENT: {
                         return result;
                     }
                 }
             }
         }
-
         throw NO_END_TAG_FOUND_EXCEPTION;
     }
 
     private List<Country> readDocument(XMLStreamReader reader) throws XMLStreamException {
-
         List<Country> marks = new ArrayList<>();
-
         while (reader.hasNext()) {
             int eventType = reader.next();
-
             switch (eventType) {
                 case XMLStreamReader.START_ELEMENT: {
                     String tagName = reader.getLocalName();
@@ -66,13 +53,11 @@ public class CountryCityXmlStaxParser implements FileParser {
                     }
                     break;
                 }
-
                 case XMLStreamConstants.END_ELEMENT: {
                     return marks;
                 }
             }
         }
-
         throw NO_END_TAG_FOUND_EXCEPTION;
     }
 
@@ -80,7 +65,6 @@ public class CountryCityXmlStaxParser implements FileParser {
         Country country = new Country();
         while (reader.hasNext()) {
             int eventType = reader.next();
-
             switch (eventType) {
                 case XMLStreamReader.START_ELEMENT: {
                     String tagName = reader.getLocalName();
@@ -104,26 +88,22 @@ public class CountryCityXmlStaxParser implements FileParser {
                     } else if ("capital".equals(tagName)) {
                         country.setCapital(readContent(reader));
                     } else if ("cities".equals(tagName)) {
-                     country.setCities(readCities(reader));
+                        country.setCities(readCities(reader));
                     }
                     break;
                 }
-
                 case XMLStreamConstants.END_ELEMENT: {
                     return country;
                 }
             }
         }
-
         throw NO_END_TAG_FOUND_EXCEPTION;
     }
 
     private List<City> readCities(XMLStreamReader reader) throws XMLStreamException {
         List<City> cities = new ArrayList<>();
-
         while (reader.hasNext()) {
             int eventType = reader.next();
-
             switch (eventType) {
                 case XMLStreamReader.START_ELEMENT: {
                     String tagName = reader.getLocalName();
@@ -132,7 +112,6 @@ public class CountryCityXmlStaxParser implements FileParser {
                     }
                     break;
                 }
-
                 case XMLStreamConstants.END_ELEMENT: {
                     return cities;
                 }
@@ -145,18 +124,14 @@ public class CountryCityXmlStaxParser implements FileParser {
         String type = reader.getAttributeValue(null, "type");
         City city = new City();
         //todo City city = createCity(type);
-
         while (reader.hasNext()) {
             int eventType = reader.next();
-
             switch (eventType) {
-
                 case XMLStreamReader.START_ELEMENT: {
                     String tagName = reader.getLocalName();
                     appendCommonCityData(city, tagName, reader);
                     break;
                 }
-
                 case XMLStreamConstants.END_ELEMENT: {
                     return city;
                 }
@@ -165,7 +140,7 @@ public class CountryCityXmlStaxParser implements FileParser {
         throw NO_END_TAG_FOUND_EXCEPTION;
     }
 
-    /*private City createCity(String type) {
+/*    private City createCity(String type) {
         CityDiscriminator cityDiscriminator = CityDiscriminator.valueOf(type);
 
         if (BIG_CITY.equals(cityDiscriminator)) {
@@ -182,25 +157,5 @@ public class CountryCityXmlStaxParser implements FileParser {
             city.setPopulation(Integer.parseInt(readContent(reader)));
         }
     }
-
-    /*private void appendPassengerAttributes(PassengerModel model, String tagName, XMLStreamReader reader) throws XMLStreamException {
-        if ("numberOfAirbags".equals(tagName)) {
-            model.setNumberOfAirbags(Integer.parseInt(readContent(reader)));
-        } else if ("numberOfSeats".equals(tagName)) {
-            model.setNumberOfSeats(Integer.parseInt(readContent(reader)));
-        } else if ("audioSystemName".equals(tagName)) {
-            model.setAudioSystemName(readContent(reader));
-        }
-    }
-
-    private void appendTruckAttributes(TruckModel model, String tagName, XMLStreamReader reader) throws XMLStreamException {
-        if ("weight".equals(tagName)) {
-            model.setWeight(Integer.parseInt(readContent(reader)));
-        } else if ("embeddedKitchen".equals(tagName)) {
-            model.setEmbeddedKitchen("Y".equals(readContent(reader)));
-        } else if ("tankSize".equals(tagName)) {
-            model.setTankSize(Integer.parseInt(readContent(reader)));
-        }
-    }*/
 
 }
