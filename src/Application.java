@@ -1,38 +1,56 @@
-import city.service.CityServiceCreator;
-import city.service.impl.CityDefaultService;
-import common.business.application.StorageType;
-import country.service.CountryServiceCreator;
-import country.service.impl.CountryDefaultService;
-import order.service.OrderServiceCreator;
-import order.service.impl.OrderDefaultService;
-import user.search.sort.SortComplexityType;
-import user.search.sort.SortOrderDirection;
-import user.search.sort.SortUserField;
-import user.search.UserSearchCondition;
-import user.search.UserSearchUtility;
-import user.service.UserCSV_FileHandler;
-import user.service.UserCSV_ServiceCreator;
-import user.service.UserServiceCreator;
-import user.service.impl.UserDefaultService;
+import common.solutions.utils.FileUtils;
+import country.domain.Country;
+import storage.initor.datasourcereader.CountryCityXmlDomParser;
+import storage.initor.datasourcereader.CountryCityXmlStaxParser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        UserDefaultService userService = (UserDefaultService) UserServiceCreator.getUserService(StorageType.MEMORY_COLLECTION);
-        OrderDefaultService orderDefaultService = (OrderDefaultService) OrderServiceCreator.getOrderService(StorageType.MEMORY_COLLECTION);
-        CountryDefaultService countryDefaultService = (CountryDefaultService) CountryServiceCreator.getCountryService(StorageType.MEMORY_COLLECTION);
-        CityDefaultService cityDefaultService = (CityDefaultService) CityServiceCreator.getCityService(StorageType.MEMORY_COLLECTION);
+        System.out.println("----------DOM xml-parser----------\n");
+        File fileWithXml = null;
+        try {
+            fileWithXml = FileUtils.createFileFromResource("init_data", ".xml", "/init_data.xml");
+            List<Country> countries = new CountryCityXmlDomParser().parseFile(fileWithXml.getAbsolutePath());
+            for (Country country : countries) {
+                System.out.println(country + "\n");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileWithXml != null) {
+                try {
+                    Files.delete(Paths.get(fileWithXml.toURI()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
-        String path = "E:\\Serj\\EPAM\\TravelCompany\\src\\common\\business\\database\\usersCSV\\Users";
-
-        UserCSV_FileHandler userCSV_fileHandler = UserCSV_ServiceCreator.getUserCSV_FileHandler(path, userService);
-        userCSV_fileHandler.addUsersFromCSV();
-
-        //todo Uncomment the next line to get the search result on single field
-        //UserSearchCondition userSearchCondition = UserSearchUtility.getUserSearchCondition(SortComplexityType.SIMPLE, SortOrderDirection.ASC, SortUserField.BY_NAME);
-        UserSearchCondition userSearchCondition = UserSearchUtility.getUserSearchCondition(SortComplexityType.COMPLEX, SortOrderDirection.ASC, SortUserField.BY_NAME, SortUserField.BY_AGE);
-        System.out.println(userService.search(userSearchCondition));
+        System.out.println("----------Stax xml-parser----------\n");
+        fileWithXml = null;
+        try {
+            fileWithXml = FileUtils.createFileFromResource("init_data", ".xml", "/init_data.xml");
+            List<Country> countries = new CountryCityXmlStaxParser().parseFile(fileWithXml.getAbsolutePath());
+            for (Country country : countries) {
+                System.out.println(country + "\n");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileWithXml != null) {
+                try {
+                    Files.delete(Paths.get(fileWithXml.toURI()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 

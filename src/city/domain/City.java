@@ -50,4 +50,12 @@ public class City extends BaseDomain {
     public int getPopulation() {
         return population;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "Name='" + Name + '\'' +
+                ", population=" + population +
+                '}';
+    }
 }
