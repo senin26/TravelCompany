@@ -1,5 +1,6 @@
 package user.service.impl;
 
+import order.service.OrderService;
 import user.domain.User;
 import user.repo.UserRepo;
 import user.search.UserSearchCondition;
@@ -10,9 +11,11 @@ import java.util.List;
 public class UserDefaultService implements UserService {
 
     private final UserRepo userRepo;
+    private final OrderService orderService;
 
-    public UserDefaultService(UserRepo userRepo) {
+    public UserDefaultService(UserRepo userRepo, OrderService orderService) {
         this.userRepo = userRepo;
+        this.orderService = orderService;
     }
 
     @Override

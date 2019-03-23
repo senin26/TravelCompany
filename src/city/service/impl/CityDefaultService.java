@@ -4,6 +4,7 @@ import city.domain.City;
 import city.repo.CityRepo;
 import city.search.CitySearchCondition;
 import city.service.CityService;
+import order.repo.OrderRepo;
 import order.service.OrderService;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.List;
 public class CityDefaultService implements CityService {
 
     private final CityRepo cityRepo;
+    private final OrderRepo orderRepo;
 
-    public CityDefaultService(CityRepo cityRepo) {
+    public CityDefaultService(CityRepo cityRepo, OrderRepo orderRepo) {
         this.cityRepo = cityRepo;
+        this.orderRepo = orderRepo;
     }
 
     @Override

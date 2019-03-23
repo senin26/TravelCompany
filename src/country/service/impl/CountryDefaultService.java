@@ -1,18 +1,24 @@
 package country.service.impl;
 
+import city.service.CityService;
 import country.domain.Country;
 import country.repo.CountryRepo;
 import country.search.CountrySearchCondition;
 import country.service.CountryService;
+import order.repo.OrderRepo;
 
 import java.util.List;
 
 public class CountryDefaultService implements CountryService {
 
     private final CountryRepo countryRepo;
+    private final CityService cityService;
+    private final OrderRepo orderRepo;
 
-    public CountryDefaultService(CountryRepo countryRepo) {
+    public CountryDefaultService(CountryRepo countryRepo, CityService cityService, OrderRepo orderRepo) {
         this.countryRepo = countryRepo;
+        this.cityService = cityService;
+        this.orderRepo = orderRepo;
     }
 
     @Override

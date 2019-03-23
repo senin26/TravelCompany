@@ -1,8 +1,8 @@
 package country.service;
 
 import common.business.application.StorageType;
-import country.repo.impl.CountryMemoryArrayRepo;
-import country.repo.impl.CountryMemoryCollectionRepo;
+import country.repo.impl.CountryArrayRepo;
+import country.repo.impl.CountryCollectionRepo;
 import country.service.impl.CountryDefaultService;
 
 public final class CountryServiceCreator {
@@ -15,10 +15,10 @@ public final class CountryServiceCreator {
         switch (storageType) {
 
             case MEMORY_ARRAY:
-                return new CountryDefaultService(new CountryMemoryArrayRepo());
+                return new CountryDefaultService(new CountryArrayRepo());
 
             case MEMORY_COLLECTION:{
-                return new CountryDefaultService(new CountryMemoryCollectionRepo());
+                return new CountryDefaultService(new CountryCollectionRepo());
             }
 
             default: {

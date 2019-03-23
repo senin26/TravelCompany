@@ -1,8 +1,8 @@
 package city.service;
 
 
-import city.repo.impl.CityMemoryArrayRepo;
-import city.repo.impl.CityMemoryCollectionRepo;
+import city.repo.impl.CityArrayRepo;
+import city.repo.impl.CityCollectionRepo;
 import city.service.impl.CityDefaultService;
 import common.business.application.StorageType;
 
@@ -16,10 +16,10 @@ public final class CityServiceCreator {
         switch (storageType) {
 
             case MEMORY_ARRAY:
-                return new CityDefaultService(new CityMemoryArrayRepo());
+                return new CityDefaultService(new CityArrayRepo());
 
             case MEMORY_COLLECTION:{
-                return new CityDefaultService(new CityMemoryCollectionRepo());
+                return new CityDefaultService(new CityCollectionRepo());
             }
 
             default: {
