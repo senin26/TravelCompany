@@ -9,7 +9,7 @@ import java.util.List;
 
 import static storage.Storage.countriesList;
 
-public class CountryMemoryCollectionRepo implements CountryRepo {
+public class CountryCollectionRepo implements CountryRepo {
 
     @Override
     public void add (Country country) {

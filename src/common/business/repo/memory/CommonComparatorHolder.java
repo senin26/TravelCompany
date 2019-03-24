@@ -1,3 +1,5 @@
+package common.business.repo.memory;
+
 import java.util.Comparator;
 
 public final class CommonComparatorHolder {

@@ -13,7 +13,7 @@ import java.util.List;
 
 import static storage.Storage.ordersArray;
 
-public class OrderMemoryArrayRepo implements OrderRepo {
+public class OrderArrayRepo implements OrderRepo {
 
     private int orderIndex = -1;
 

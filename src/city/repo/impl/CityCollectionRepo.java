@@ -9,7 +9,7 @@ import java.util.List;
 
 import static storage.Storage.citiesList;
 
-public class CityMemoryCollectionRepo implements CityRepo {
+public class CityCollectionRepo implements CityRepo {
     
     @Override
     public void add (City city) {

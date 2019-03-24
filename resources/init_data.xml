@@ -1,0 +1,144 @@
+<init_data>
+
+    <countries>
+
+        <country>
+            <name>Russia</name>
+            <climate>cold</climate>
+            <capital>Moscow</capital>
+            <cities>
+                <city>
+                    <name>Saint-Petersburg</name>
+                    <population>5000000</population>
+                </city>
+
+                <city>
+                    <name>Sochi</name>
+                    <population>365000</population>
+                </city>
+
+                <city>
+                    <name>Moscow</name>
+                    <population>12000000</population>
+                </city>
+
+                <city>
+                    <name>Yekaterinburg</name>
+                    <population>1400000</population>
+                </city>
+
+                <city>
+                    <name>Nalchik</name>
+                    <population>240000</population>
+                </city>
+
+                <city>
+                    <name>Pyatigorsk</name>
+                    <population>145000</population>
+                </city>
+
+                <city>
+                    <name>Kirovsk</name>
+                    <population>27000</population>
+                </city>
+            </cities>
+        </country>
+
+        <country>
+            <name>USA</name>
+            <climate>warm</climate>
+            <capital>Washington</capital>
+            <cities>
+                <city>
+                    <name>New-York</name>
+                    <population>8400000</population>
+                </city>
+
+                <city>
+                    <name>Charlotte</name>
+                    <population>860000</population>
+                </city>
+
+                <city>
+                    <name>Omaha</name>
+                    <population>470000</population>
+                </city>
+
+                <city>
+                    <name>Chicago</name>
+                    <population>2700000</population>
+                </city>
+            </cities>
+        </country>
+
+        <country>
+            <name>Netherlands</name>
+            <climate>medium</climate>
+            <capital>Amsterdam</capital>
+            <cities>
+                <city>
+                    <name>Amsterdam</name>
+                    <population>820000</population>
+                </city>
+
+                <city>
+                    <name>Rotterdam</name>
+                    <population>620000</population>
+                </city>
+
+                <city>
+                    <name>Delft</name>
+                    <population>100000</population>
+                </city>
+            </cities>
+        </country>
+
+        <country>
+            <name>Belgium</name>
+            <climate>medium</climate>
+            <capital>Brussels</capital>
+            <cities>
+                <city>
+                    <name>Antwerpen</name>
+                    <population>500000</population>
+                </city>
+
+                <city>
+                    <name>Ghent</name>
+                    <population>250000</population>
+                </city>
+            </cities>
+        </country>
+
+        <country>
+            <name>Turkey</name>
+            <climate>warm</climate>
+            <capital>Ancara</capital>
+            <cities>
+                <city>
+                    <name>Instanbul</name>
+                    <population>15000000</population>
+                </city>
+
+                <city>
+                    <name>Antalya</name>
+                    <population>2300000</population>
+                </city>
+            </cities>
+        </country>
+
+        <country>
+            <name>Finland</name>
+            <climate>cold</climate>
+            <capital>Helsinki</capital>
+            <cities>
+                <city>
+                    <name>Helsinki</name>
+                    <population>640000</population>
+                </city>
+            </cities>
+        </country>
+
+    </countries>
+
+</init_data>

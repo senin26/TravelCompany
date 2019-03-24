@@ -13,7 +13,7 @@ import java.util.List;
 import static storage.Storage.usersList;
 
 
-public class UserMemoryCollectionRepo implements UserRepo{
+public class UserCollectionRepo implements UserRepo{
 
     @Override
     public void add (User user) {

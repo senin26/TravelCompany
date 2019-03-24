@@ -10,7 +10,7 @@ import java.util.List;
 
 import static storage.Storage.citiesArray;
 
-public class CityMemoryArrayRepo implements CityRepo {
+public class CityArrayRepo implements CityRepo {
 
 
     private int cityIndex = -1;

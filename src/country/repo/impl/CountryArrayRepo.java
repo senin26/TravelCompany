@@ -11,7 +11,7 @@ import java.util.List;
 
 import static storage.Storage.countriesArray;
 
-public class CountryMemoryArrayRepo implements CountryRepo {
+public class CountryArrayRepo implements CountryRepo {
 
     private int countryIndex = -1;
 

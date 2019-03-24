@@ -1,10 +1,10 @@
 package common.business.service;
 
-import common.business.exceptions.BasicTravelCompanyUncheckedException;
-import common.business.exceptions.ExceptionCodes;
-
-public class NoSuchCSV_Exception extends BasicTravelCompanyUncheckedException {
+import common.business.exceptions.TravelCompanyUncheckedException;
+import common.business.exceptions.UncheckedExceptionCodes;
+//todo delete this
+public class NoSuchCSV_Exception extends TravelCompanyUncheckedException {
     public NoSuchCSV_Exception() {
-        super(ExceptionCodes.NO_SUCH_CSV_FILE);
+        super(UncheckedExceptionCodes.NO_SUCH_CSV_FILE);
     }
 }

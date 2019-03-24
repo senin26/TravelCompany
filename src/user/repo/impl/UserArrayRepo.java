@@ -12,7 +12,7 @@ import java.util.List;
 
 import static storage.Storage.usersArray;
 
-public class UserMemoryArrayRepo implements UserRepo {
+public class UserArrayRepo implements UserRepo {
 
     private int userIndex = -1;
 

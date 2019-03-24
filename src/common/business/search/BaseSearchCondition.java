@@ -12,6 +12,11 @@ public abstract class BaseSearchCondition<ID> {
         return id;
     }
 
+    // todo why can we change id in the search condition?
+    public void setId(ID id) {
+        this.id = id;
+    }
+
     public OrderDirection getOrderDirection() {
         return orderDirection;
     }
@@ -28,14 +33,8 @@ public abstract class BaseSearchCondition<ID> {
         this.orderType = orderType;
     }
 
-    // todo why can we change id in the search condition?
-    public void setId(ID id) {
-        this.id = id;
-    }
-
     public boolean needOrdering() {
         return orderDirection != null && orderType != null;
     }
-
 
 }

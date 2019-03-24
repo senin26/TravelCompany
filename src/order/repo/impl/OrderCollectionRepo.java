@@ -10,7 +10,7 @@ import java.util.List;
 
 import static storage.Storage.ordersList;
 
-public class OrderMemoryCollectionRepo implements OrderRepo {
+public class OrderCollectionRepo implements OrderRepo {
 
     @Override
     public void add (Order order) {

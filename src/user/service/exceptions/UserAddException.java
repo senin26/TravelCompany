@@ -1,11 +1,11 @@
 package user.service.exceptions;
 
-import common.business.exceptions.BasicTravelCompanyUncheckedException;
-import common.business.exceptions.ExceptionCodes;
+import common.business.exceptions.TravelCompanyUncheckedException;
+import common.business.exceptions.UncheckedExceptionCodes;
 
-public class UserAddException extends BasicTravelCompanyUncheckedException {
+public class UserAddException extends TravelCompanyUncheckedException {
 
     public UserAddException() {
-        super(ExceptionCodes.USER_ADD);
+        super(UncheckedExceptionCodes.USER_ADD);
     }
 }
