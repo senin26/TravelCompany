@@ -8,6 +8,8 @@ import user.search.UserSearchCondition;
 import user.search.UserSearchResult;
 import user.search.UserSearchUtility;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static storage.Storage.usersArray;
@@ -17,19 +19,20 @@ public class UserArrayRepo implements UserRepo {
     private int userIndex = -1;
 
     @Override
-    public void add(User user) {
+    public void insert(User user) {
         if (userIndex == usersArray.length - 1) {
             User[] newArrUsers = new User[usersArray.length * 2];
             System.arraycopy(usersArray, 0, newArrUsers, 0, usersArray.length);
             usersArray = newArrUsers;
         }
         userIndex++;
-        user.setId(SequenceGenerator.getVal());
+        user.setId(SequenceGenerator.getNextValue());
         usersArray[userIndex] = user;
 
     }
 
     @Override
+    // todo this method realization is empty in the AutoService project...
     public List search(UserSearchCondition searchCondition) {
         UserSearchResult userSearchResult = UserSearchUtility.getUserSearchResult(searchCondition);
         return userSearchResult.getSearchResult();
@@ -73,6 +76,11 @@ public class UserArrayRepo implements UserRepo {
                 System.out.println(user);
             }
         }
+    }
+
+    @Override
+    public List<User> findAll() {
+        return new ArrayList<>(Arrays.asList(usersArray));
     }
 
     private Integer findUserIndexById(long userId) {

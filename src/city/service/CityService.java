@@ -7,5 +7,5 @@ import common.solutions.service.BaseService;
 import java.util.List;
 
 public interface CityService extends BaseService<City, Long> {
-    List<City> search(CitySearchCondition searchCondition);
+    List<? extends City> search(CitySearchCondition searchCondition);
 }

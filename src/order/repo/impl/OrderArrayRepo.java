@@ -5,20 +5,21 @@ import order.domain.Order;
 import order.repo.OrderRepo;
 import order.search.OrderSearchCondition;
 import storage.SequenceGenerator;
-import order.domain.Order;
-import order.search.OrderSearchCondition;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.ordersArray;
+import static storage.Storage.usersArray;
 
 public class OrderArrayRepo implements OrderRepo {
 
     private int orderIndex = -1;
 
     @Override
-    public void add(Order order) {
+    public void insert(Order order) {
         if (orderIndex == ordersArray.length - 1) {
             Order[] newArrOrders = new Order[ordersArray.length * 2];
             System.arraycopy(ordersArray, 0, newArrOrders, 0, ordersArray.length);
@@ -26,7 +27,7 @@ public class OrderArrayRepo implements OrderRepo {
         }
 
         orderIndex++;
-        order.setId(SequenceGenerator.getVal());
+        order.setId(SequenceGenerator.getNextValue());
         ordersArray[orderIndex] = order;
     }
 
@@ -43,11 +44,6 @@ public class OrderArrayRepo implements OrderRepo {
         }
 
         return null;
-    }
-
-    @Override
-    public List search(OrderSearchCondition searchCondition) {
-        return Collections.emptyList();
     }
 
     @Override
@@ -82,5 +78,53 @@ public class OrderArrayRepo implements OrderRepo {
         return null;
     }
 
+    @Override
+    public List search(OrderSearchCondition searchCondition) {
+        return Collections.emptyList();
+    }
 
+    @Override
+    public int countByCity(long modelId) {
+        int count = 0;
+        for (Order order : ordersArray) {
+            if (modelId == order.getCity().getId()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int countByCountry(long markId) {
+        int count = 0;
+        for (Order order : ordersArray) {
+            if (markId == order.getCountry().getId()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public void deleteByUserId(long userId) {
+
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return new ArrayList<>(Arrays.asList(ordersArray));
+    }
+
+    @Override
+    public List<Order> findByUserId(long userId) {
+        List<Order> foundOrders = new ArrayList<>();
+
+        for (Order order : ordersArray) {
+            if (order.getUser().getId().equals(userId)) {
+                foundOrders.add(order);
+            }
+        }
+
+        return foundOrders;
+    }
 }

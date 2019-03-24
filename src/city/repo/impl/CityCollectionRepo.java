@@ -12,7 +12,7 @@ import static storage.Storage.citiesList;
 public class CityCollectionRepo implements CityRepo {
     
     @Override
-    public void add (City city) {
+    public void insert(City city) {
         citiesList.add(city);
     }
 
@@ -60,4 +60,8 @@ public class CityCollectionRepo implements CityRepo {
         return null;
     }
 
+    @Override
+    public List<City> findAll() {
+        return citiesList;
+    }
 }

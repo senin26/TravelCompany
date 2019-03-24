@@ -5,6 +5,7 @@ import order.domain.Order;
 import order.search.OrderSearchCondition;
 import storage.SequenceGenerator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,9 +14,9 @@ import static storage.Storage.ordersList;
 public class OrderCollectionRepo implements OrderRepo {
 
     @Override
-    public void add (Order order) {
+    public void insert(Order order) {
         ordersList.add(order);
-        ((Order) order).setId(SequenceGenerator.getVal());
+        ((Order) order).setId(SequenceGenerator.getNextValue());
     }
 
     @Override
@@ -48,10 +49,6 @@ public class OrderCollectionRepo implements OrderRepo {
         }
     }
 
-    private void deleteOrderByIndex(int index) {
-        ordersList.remove(index);
-    }
-
     private Order findOrderById(long id) {
         for (Order o:ordersList) {
             if (Long.valueOf(id).equals(o.getId())) {
@@ -59,6 +56,51 @@ public class OrderCollectionRepo implements OrderRepo {
             }
         }
         return null;
+    }
+
+    @Override
+    public int countByCity(long cityId) {
+        int count = 0;
+        for (Order order : ordersList) {
+            if (cityId == order.getCity().getId()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int countByCountry(long countryId) {
+        int count = 0;
+        for (Order order : ordersList) {
+            if (countryId == order.getCity().getId()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public void deleteByUserId(long userId) {
+
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<Order> findByUserId(long userId) {
+        List<Order> foundOrders = new ArrayList<>();
+
+        for (Order order : ordersList) {
+            if (order.getUser().getId().equals(userId)) {
+                foundOrders.add(order);
+            }
+        }
+
+        return foundOrders;
     }
 
 }

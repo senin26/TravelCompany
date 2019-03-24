@@ -6,18 +6,14 @@ import storage.SequenceGenerator;
 
 import java.util.Arrays;
 
-public class User extends BaseDomain {
+public class User extends BaseDomain<Long> {
 
-    private Long id;
     private String firstName;
     private String lastName;
-    private int passportSerialNum;
-    private int passportNum;
     private int age;
-    private Order[] orders;
     private ClientType clientType;
-    private int discountPercent;
-    private static SequenceGenerator sequenceGenerator;
+    private Order[] orders;
+    private int discountPercent; // todo insert this functionality
     //todo implement Builder pattern here!
 
     public User() {
@@ -33,14 +29,6 @@ public class User extends BaseDomain {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getLastName() {
@@ -67,7 +55,6 @@ public class User extends BaseDomain {
         this.firstName = firstName;
     }
 
-
     public int getAge() {
         return age;
     }
@@ -76,33 +63,21 @@ public class User extends BaseDomain {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return  "\n" + "User {" + "\n" +
-                "firstName='" + firstName + '\'' + "\n" +
-                "lastName='" + lastName + '\'' + "\n" +
-                "age=" + age + "\n" +
-                "}";
-    }
-
-    /*@Override
-    public String toString() {
-        return  "\n" + "User {" + "\n" +
-                "id=" + id + "\n" +
-                "firstName='" + firstName + '\'' + "\n" +
-                "lastName='" + lastName + '\'' + "\n" +
-                "passportSerialNum=" + passportSerialNum + "\n" +
-                "passportNum=" + passportNum + "\n" +
-                "age=" + age + "\n" +
-                "cities=" + Arrays.toString(orders) + "\n" +
-                "}";
-    }*/
-
     public ClientType getClientType() {
         return clientType;
     }
 
     public void setClientType(ClientType clientType) {
         this.clientType = clientType;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                ", id=" + id +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", clientType=" + clientType + '\'' +
+                '}';
     }
 }

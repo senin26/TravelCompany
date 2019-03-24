@@ -1,4 +1,4 @@
-package country.repo.impl;
+package country.repo.impl.memory;
 
 import country.domain.Country;
 import country.repo.CountryRepo;
@@ -12,7 +12,7 @@ import static storage.Storage.countriesList;
 public class CountryCollectionRepo implements CountryRepo {
 
     @Override
-    public void add (Country country) {
+    public void insert(Country country) {
         countriesList.add(country);
     }
 
@@ -45,6 +45,11 @@ public class CountryCollectionRepo implements CountryRepo {
         for (Country country : countriesList) {
             System.out.println(country);
         }
+    }
+
+    @Override
+    public List<Country> findAll() {
+        return countriesList;
     }
 
     private void deleteCountryByIndex(int index) {

@@ -19,9 +19,9 @@ public class UserDefaultService implements UserService {
     }
 
     @Override
-    public void add(User user) {
+    public void insert(User user) {
         if (user != null) {
-            userRepo.add(user);
+            userRepo.insert(user);
         }
     }
 
@@ -58,6 +58,11 @@ public class UserDefaultService implements UserService {
         if (id != null) {
             userRepo.deleteById(id);
         }
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepo.findAll();
     }
 
     @Override

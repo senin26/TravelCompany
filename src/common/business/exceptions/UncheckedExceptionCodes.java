@@ -2,7 +2,7 @@ package common.business.exceptions;
 
 public enum UncheckedExceptionCodes {
 
-    USER_ADD(20, "Can't add this user"),
+    USER_ADD(20, "Can't insert this user"),
     USER_DELETE(40, "Can't delete this user"),
     ORDER_DELETE(60, "Can't delete this order"),
     CITY_DELETE(80, "Can't delete this city"),

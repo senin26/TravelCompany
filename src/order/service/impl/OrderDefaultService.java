@@ -5,6 +5,7 @@ import order.repo.OrderRepo;
 import order.search.OrderSearchCondition;
 import order.service.OrderService;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -17,15 +18,10 @@ public class OrderDefaultService implements OrderService {
     }
 
     @Override
-    public void add(Order order) {
+    public void insert(Order order) {
         if (order != null) {
-            orderRepo.add(order);
+            orderRepo.insert(order);
         }
-    }
-
-    @Override
-    public List<Order> search(OrderSearchCondition searchCondition) {
-        return orderRepo.search(searchCondition);
     }
 
     @Override
@@ -52,6 +48,11 @@ public class OrderDefaultService implements OrderService {
     }
 
     @Override
+    public List<Order> search(OrderSearchCondition searchCondition) {
+        return orderRepo.search(searchCondition);
+    }
+
+    @Override
     public void deleteById(Long id) {
         if (id != null) {
             orderRepo.deleteById(id);
@@ -59,8 +60,29 @@ public class OrderDefaultService implements OrderService {
     }
 
     @Override
+    public void deleteByUserId(Long userId) {
+        if (userId != null) {
+            orderRepo.deleteByUserId(userId);
+        }
+    }
+
+    @Override
     public void printAll() {
         orderRepo.printAll();
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepo.findAll();
+    }
+
+    @Override
+    public List<Order> getOrdersByUser(Long userId) {
+        if (userId != null) {
+            return orderRepo.findByUserId(userId);
+        }
+
+        return Collections.emptyList();
     }
 
 }

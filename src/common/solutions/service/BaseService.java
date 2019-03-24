@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BaseService<TYPE, ID> {
 
-    void add(TYPE entity);
+    void insert(TYPE entity);
 
     void update(TYPE entity);
 

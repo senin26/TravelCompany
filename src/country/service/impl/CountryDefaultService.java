@@ -1,12 +1,15 @@
 package country.service.impl;
 
+import city.domain.City;
 import city.service.CityService;
+import common.business.exceptions.TravelCompanyUncheckedException;
 import country.domain.Country;
 import country.repo.CountryRepo;
 import country.search.CountrySearchCondition;
 import country.service.CountryService;
 import order.repo.OrderRepo;
 
+import java.util.Collections;
 import java.util.List;
 
 public class CountryDefaultService implements CountryService {
@@ -22,9 +25,9 @@ public class CountryDefaultService implements CountryService {
     }
 
     @Override
-    public void add(Country country) {
+    public void insert(Country country) {
         if (country != null) {
-            countryRepo.add(country);
+            countryRepo.insert(country);
         }
     }
 
@@ -61,6 +64,24 @@ public class CountryDefaultService implements CountryService {
         if (id != null) {
             countryRepo.deleteById(id);
         }
+    }
+
+    @Override
+    public void removeAllCitiesFromCountry(Long countryId) throws TravelCompanyUncheckedException {
+        Country country = findById(countryId);
+        if (country != null) {
+            List<City> cities = country.getCities() == null ? Collections.emptyList() : country.getCities();
+
+            for (City city : cities) {
+                cityService.deleteById(city.getId());
+            }
+
+        }
+    }
+
+    @Override
+    public List<Country> findAll() {
+        return countryRepo.findAll();
     }
 
     @Override

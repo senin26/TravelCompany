@@ -5,6 +5,9 @@ import city.repo.CityRepo;
 import city.search.CitySearchCondition;
 import common.solutions.utils.ArrayUtils;
 import storage.SequenceGenerator;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,7 +19,7 @@ public class CityArrayRepo implements CityRepo {
     private int cityIndex = -1;
 
     @Override
-    public void add(City city) {
+    public void insert(City city) {
         if (cityIndex == citiesArray.length - 1) {
             City[] newArrCitys = new City[citiesArray.length * 2];
             System.arraycopy(citiesArray, 0, newArrCitys, 0, citiesArray.length);
@@ -24,7 +27,7 @@ public class CityArrayRepo implements CityRepo {
         }
 
         cityIndex++;
-        city.setId(SequenceGenerator.getVal());
+        city.setId(SequenceGenerator.getNextValue());
         citiesArray[cityIndex] = city;
     }
 
@@ -78,6 +81,11 @@ public class CityArrayRepo implements CityRepo {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<City> findAll() {
+        return new ArrayList<>(Arrays.asList(citiesArray));
     }
 
 }

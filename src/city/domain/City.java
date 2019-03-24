@@ -1,60 +1,64 @@
 package city.domain;
 
 import common.business.domain.BaseDomain;
-import country.domain.Country;
 
-public class City extends BaseDomain {
+public abstract class City extends BaseDomain<Long> {
 
-    private String Name;
-    private String countryName;
-    private int population;
-    private float price;
-    private Long id;
+    protected String name;
+    protected String description;
+    protected String countryName;
+    protected int population;
+    protected CityDiscriminator discriminator;
 
-    public float getPrice() {
-        return price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
-    public void setPopulation(int population) {
-        this.population = population;
+    public City() {
+        initDiscriminator();
     }
 
     public String getName() {
-        return Name;
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCountryName() {
         return countryName;
     }
 
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
     public int getPopulation() {
         return population;
     }
 
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public CityDiscriminator getDiscriminator() {
+        return discriminator;
+    }
+
+    protected abstract void initDiscriminator();
+
     @Override
     public String toString() {
-        return "City{" +
-                "Name='" + Name + '\'' +
+        return discriminator +
+                " id=" + id +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", countryName='" + countryName + '\'' +
                 ", population=" + population +
                 '}';
     }

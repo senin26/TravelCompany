@@ -7,17 +7,19 @@ import user.search.UserSearchCondition;
 import user.search.UserSearchResult;
 import user.search.UserSearchUtility;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static storage.Storage.usersArray;
 import static storage.Storage.usersList;
 
 
 public class UserCollectionRepo implements UserRepo{
 
     @Override
-    public void add (User user) {
-        user.setId(SequenceGenerator.getVal());
+    public void insert(User user) {
+        user.setId(SequenceGenerator.getNextValue());
         usersList.add(user);
     }
 
@@ -53,14 +55,15 @@ public class UserCollectionRepo implements UserRepo{
         }
     }
 
-    private void deleteUserByIndex(int index) {
-        usersList.remove(index);
+    @Override
+    public List<User> findAll() {
+        return usersList;
     }
 
     private User findUserById(long id) {
-        for (User u:usersList) {
-            if (Long.valueOf(id).equals(u.getId())) {
-                return u;
+        for (User user:usersList) {
+            if (Long.valueOf(id).equals(user.getId())) {
+                return user;
             }
         }
         return null;

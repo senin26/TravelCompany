@@ -5,71 +5,78 @@ import common.business.domain.BaseDomain;
 
 import java.util.List;
 
-public class Country extends BaseDomain {
+public class Country extends BaseDomain<Long> {
 
     private String name;
     private Climate climate;
     private String capital;
-    private List cities;
+    private List<City> cities;
 
-    private float price;
-    private Long id;
-
-    public float getPrice() {
-        return price;
+    public Country() {
     }
 
-    public Long getId() {
-        return id;
+    public Country(String name) {
+        this.name = name;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setClimate(Climate climate) {
-        this.climate = climate;
-    }
-
-    public void setCapital(String capital) {
-        this.capital = capital;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public Climate getClimate() {
         return climate;
+    }
+
+    public void setClimate(Climate climate) {
+        this.climate = climate;
     }
 
     public String getCapital() {
         return capital;
     }
 
-    public void setCities(List cities) {
-        this.cities = cities;
+    public void setCapital(String capital) {
+        this.capital = capital;
     }
 
     public List getCities() {
         return cities;
     }
 
+    public void setCities(List cities) {
+        this.cities = cities;
+    }
+
     @Override
     public String toString() {
-        return "Country{" +
+        return "--------------------\nCountry\n" +
+                "id=" + id +
                 "name='" + name + '\'' +
                 ", climate=" + climate +
                 ", capital='" + capital + '\'' +
-                ", cities=" + cities.toString() +
+                ", \n\ncities:\n" + getCitiesAsStr() +
                 '}';
     }
+
+    private String getCitiesAsStr() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (City city : cities) {
+            stringBuilder.append(city.toString()).append("\n");
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public String getAsStrWithoutCities() {
+        return "id=" + id +
+                "name='" + name + '\'' +
+                ", climate=" + climate +
+                ", capital='" + capital + '\'';
+    }
+
 }

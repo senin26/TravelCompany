@@ -7,7 +7,7 @@ public class SequenceGenerator {
     private SequenceGenerator() {
     }
 
-    public static long getVal(){
+    public static long getNextValue(){
         return val++;
     }
 

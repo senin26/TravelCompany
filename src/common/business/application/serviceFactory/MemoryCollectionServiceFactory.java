@@ -5,7 +5,7 @@ import city.repo.impl.CityCollectionRepo;
 import city.service.CityService;
 import city.service.impl.CityDefaultService;
 import country.repo.CountryRepo;
-import country.repo.impl.CountryCollectionRepo;
+import country.repo.impl.memory.CountryCollectionRepo;
 import country.service.CountryService;
 import country.service.impl.CountryDefaultService;
 import order.repo.OrderRepo;

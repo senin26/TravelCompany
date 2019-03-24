@@ -1,4 +1,4 @@
-package country.repo.impl;
+package country.repo.impl.memory;
 
 import common.solutions.utils.ArrayUtils;
 import country.domain.Country;
@@ -6,17 +6,20 @@ import country.repo.CountryRepo;
 import country.search.CountrySearchCondition;
 import storage.SequenceGenerator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static storage.Storage.countriesArray;
+import static storage.Storage.countriesList;
 
 public class CountryArrayRepo implements CountryRepo {
 
     private int countryIndex = -1;
 
     @Override
-    public void add(Country country) {
+    public void insert(Country country) {
         if (countryIndex == countriesArray.length - 1) {
             Country[] newArrCountrys = new Country[countriesArray.length * 2];
             System.arraycopy(countriesArray, 0, newArrCountrys, 0, countriesArray.length);
@@ -24,7 +27,7 @@ public class CountryArrayRepo implements CountryRepo {
         }
 
         countryIndex++;
-        country.setId(SequenceGenerator.getVal());
+        country.setId(SequenceGenerator.getNextValue());
         countriesArray[countryIndex] = country;
     }
 
@@ -79,5 +82,9 @@ public class CountryArrayRepo implements CountryRepo {
         }
         return null;
     }
-    
+
+    @Override
+    public List<Country> findAll() {
+        return new ArrayList<>(Arrays.asList(countriesArray));
+    }
 }

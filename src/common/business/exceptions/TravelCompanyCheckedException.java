@@ -4,14 +4,14 @@ public class TravelCompanyCheckedException extends RuntimeException {
 
     protected int code;
 
-    public TravelCompanyCheckedException(CheckedExceptionCodes exceptionCode) {
-        super(exceptionCode.getMessage());
-        this.code = exceptionCode.getCode();
+    public TravelCompanyCheckedException(int code, String message) {
+        super(message);
+        this.code = code;
     }
 
-    public TravelCompanyCheckedException(CheckedExceptionCodes exceptionCode, Exception cause) {
-        super(exceptionCode.getMessage());
-        this.code = exceptionCode.getCode();
+    public TravelCompanyCheckedException(int code, String message, Exception cause) {
+        super(message);
+        this.code = code;
         initCause(cause);
     }
 }

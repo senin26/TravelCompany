@@ -1,13 +1,17 @@
 package city.service.impl;
 
 import city.domain.City;
+import city.domain.exception.CityExceptionMeta;
+import city.domain.exception.unchecked.DeleteCityException;
 import city.repo.CityRepo;
 import city.search.CitySearchCondition;
 import city.service.CityService;
+import common.business.exceptions.TravelCompanyUncheckedException;
 import order.repo.OrderRepo;
-import order.service.OrderService;
 
 import java.util.List;
+
+import static city.domain.exception.CityExceptionMeta.DELETE_CITY_CONSTRAINT_ERROR;
 
 
 public class CityDefaultService implements CityService {
@@ -21,9 +25,9 @@ public class CityDefaultService implements CityService {
     }
 
     @Override
-    public void add(City city) {
+    public void insert(City city) {
         if (city != null) {
-            cityRepo.add(city);
+            cityRepo.insert(city);
         }
     }
 
@@ -37,7 +41,34 @@ public class CityDefaultService implements CityService {
     }
 
     @Override
-    public List<City> search(CitySearchCondition searchCondition) {
+    public void delete(City city) {
+        if (city.getId() != null) {
+            this.deleteById(city.getId());
+        }
+    }
+
+    @Override
+    public void deleteById(Long id) throws TravelCompanyUncheckedException {
+        if (id != null) {
+
+            boolean noOrders = orderRepo.countByCity(id) == 0;
+            if (noOrders) {
+                cityRepo.deleteById(id);
+            } else {
+                throw new DeleteCityException(DELETE_CITY_CONSTRAINT_ERROR);
+            }
+
+            cityRepo.deleteById(id);
+        }
+    }
+
+    @Override
+    public void printAll() {
+        cityRepo.printAll();
+    }
+
+    @Override
+    public List<? extends City> search(CitySearchCondition searchCondition) {
         return cityRepo.search(searchCondition);
     }
 
@@ -49,22 +80,7 @@ public class CityDefaultService implements CityService {
     }
 
     @Override
-    public void delete(City city) {
-        if (city.getId() != null) {
-            this.deleteById(city.getId());
-        }
+    public List<City> findAll() {
+        return cityRepo.findAll();
     }
-
-    @Override
-    public void deleteById(Long id) {
-        if (id != null) {
-            cityRepo.deleteById(id);
-        }
-    }
-
-    @Override
-    public void printAll() {
-        cityRepo.printAll();
-    }
-
 }

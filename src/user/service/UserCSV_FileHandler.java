@@ -26,7 +26,7 @@ public class UserCSV_FileHandler extends CSV_FileHandler {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
             while ((userInfo = bufferedReader.readLine())!=null) {
                 String[] splUserInfo = userInfo.split(" | ");
-                    userService.add(new User(splUserInfo[2], splUserInfo[4], Integer.valueOf(splUserInfo[6])));
+                    userService.insert(new User(splUserInfo[2], splUserInfo[4], Integer.valueOf(splUserInfo[6])));
             }
         } catch (IOException e) {
             e.printStackTrace();
