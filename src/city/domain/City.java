@@ -2,11 +2,17 @@ package city.domain;
 
 import common.business.domain.BaseDomain;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public abstract class City extends BaseDomain<Long> {
 
+    @XmlElement(name="name")
     protected String name;
     protected String description;
     protected String countryName;
+    @XmlElement(name="population")
     protected int population;
     protected CityDiscriminator discriminator;
 
@@ -55,8 +61,8 @@ public abstract class City extends BaseDomain<Long> {
     @Override
     public String toString() {
         return discriminator +
-                " id=" + id +
-                "name='" + name + '\'' +
+                " id=" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", countryName='" + countryName + '\'' +
                 ", population=" + population +

@@ -3,12 +3,18 @@ package country.domain;
 import city.domain.City;
 import common.business.domain.BaseDomain;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+@XmlRootElement
 public class Country extends BaseDomain<Long> {
 
+    @XmlElement(name="name")
     private String name;
+    @XmlElement(name="climate")
     private Climate climate;
+    @XmlElement(name="capital")
     private String capital;
     private List<City> cities;
 
@@ -55,8 +61,8 @@ public class Country extends BaseDomain<Long> {
     @Override
     public String toString() {
         return "--------------------\nCountry\n" +
-                "id=" + id +
-                "name='" + name + '\'' +
+                "id=" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", climate=" + climate +
                 ", capital='" + capital + '\'' +
                 ", \n\ncities:\n" + getCitiesAsStr() +

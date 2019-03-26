@@ -1,6 +1,9 @@
 package storage.initor.datasourcereader;
 
+import city.domain.BigCity;
 import city.domain.City;
+import city.domain.CityDiscriminator;
+import city.domain.SmallCity;
 import country.domain.Climate;
 import country.domain.Country;
 import common.solutions.xml.stax.parse.CustomStaxReader;
@@ -10,6 +13,7 @@ import javax.xml.stream.XMLStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import static city.domain.CityDiscriminator.BIG_CITY;
 import static common.solutions.xml.stax.XmlStaxUtils.readContent;
 
 
@@ -42,19 +46,19 @@ public class CountryCityXmlStaxParser implements FileParser {
     }
 
     private List<Country> readDocument(XMLStreamReader reader) throws XMLStreamException {
-        List<Country> marks = new ArrayList<>();
+        List<Country> countries = new ArrayList<>();
         while (reader.hasNext()) {
             int eventType = reader.next();
             switch (eventType) {
                 case XMLStreamReader.START_ELEMENT: {
                     String tagName = reader.getLocalName();
                     if ("country".equals(tagName)) {
-                        marks.add(readCountry(reader));
+                        countries.add(readCountry(reader));
                     }
                     break;
                 }
                 case XMLStreamConstants.END_ELEMENT: {
-                    return marks;
+                    return countries;
                 }
             }
         }
@@ -121,9 +125,8 @@ public class CountryCityXmlStaxParser implements FileParser {
     }
 
     private City readCity(XMLStreamReader reader) throws XMLStreamException {
-        String type = reader.getAttributeValue(null, "type");
-        City city = new City();
-        //todo City city = createCity(type);
+        String size = reader.getAttributeValue(null, "size");
+        City city = createCity(size);
         while (reader.hasNext()) {
             int eventType = reader.next();
             switch (eventType) {
@@ -140,7 +143,7 @@ public class CountryCityXmlStaxParser implements FileParser {
         throw NO_END_TAG_FOUND_EXCEPTION;
     }
 
-/*    private City createCity(String type) {
+    private City createCity(String type) {
         CityDiscriminator cityDiscriminator = CityDiscriminator.valueOf(type);
 
         if (BIG_CITY.equals(cityDiscriminator)) {
@@ -148,7 +151,7 @@ public class CountryCityXmlStaxParser implements FileParser {
         } else {
             return new SmallCity();
         }
-    }*/
+    }
 
     private void appendCommonCityData(City city, String tagName, XMLStreamReader reader) throws XMLStreamException {
         if ("name".equals(tagName)) {

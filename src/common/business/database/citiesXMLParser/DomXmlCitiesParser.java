@@ -1,3 +1,4 @@
+/*
 package common.business.database.citiesXMLParser;
 
 
@@ -14,9 +15,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * Created by Admin on 3/18/2019.
- */
+ *//*
+
 public class DomXmlCitiesParser implements XmlParser<List<City>> {
 
     @Override
@@ -46,6 +49,7 @@ public class DomXmlCitiesParser implements XmlParser<List<City>> {
 
                 for (int j = 0; j < cityInnerTags.getLength(); j++) {
                     Node cityInner = cityInnerTags.item(j);
+                    city
 
                     switch (cityInner.getNodeName()) {
                         case "name": {
@@ -72,3 +76,4 @@ public class DomXmlCitiesParser implements XmlParser<List<City>> {
 
 
 }
+*/

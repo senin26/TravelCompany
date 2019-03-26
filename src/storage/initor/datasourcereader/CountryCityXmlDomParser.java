@@ -1,6 +1,8 @@
 package storage.initor.datasourcereader;
 
+import city.domain.BigCity;
 import city.domain.City;
+import city.domain.SmallCity;
 import country.domain.Climate;
 import country.domain.Country;
 import org.w3c.dom.Document;
@@ -65,9 +67,13 @@ public class CountryCityXmlDomParser implements FileParser {
                         case "cities": {
                             country.setCities(new ArrayList<City>());
                             NodeList xmlChildren = ((Element) countryInner).getElementsByTagName("city");
+                            City city;
                             for (int k = 0; k < xmlChildren.getLength(); k++) {
                                 Element xmlChild = (Element) xmlChildren.item(k);
-                                City city = new City();
+                                if (xmlChild.getAttribute("size").equals("big")) {
+                                    city = new BigCity();
+                                }
+                                else city = new SmallCity();
                                 country.getCities().add(city);
                                 city.setName(xmlChild.getElementsByTagName("name").item(0).getTextContent());
                                 city.setPopulation(Integer.parseInt(xmlChild.getElementsByTagName("population").item(0).getTextContent()));

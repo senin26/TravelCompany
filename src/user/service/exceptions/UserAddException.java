@@ -6,6 +6,6 @@ import common.business.exceptions.UncheckedExceptionCodes;
 public class UserAddException extends TravelCompanyUncheckedException {
 
     public UserAddException() {
-        super(UncheckedExceptionCodes.USER_ADD);
+        super(UncheckedExceptionCodes.USER_ADD.getCode(), UncheckedExceptionCodes.USER_ADD.getMessage());
     }
 }

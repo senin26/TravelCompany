@@ -73,11 +73,11 @@ public class User extends BaseDomain<Long> {
 
     @Override
     public String toString() {
-        return "User{" +
-                ", id=" + id +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", clientType=" + clientType + '\'' +
-                '}';
+        return "\nUser " +
+                "id=" + id + "\n" +
+                "firstName='" + firstName + "\n" +
+                "lastName='" + lastName + "\n" +
+                "clientType=" + clientType + "\n" +
+                "age=" + age;
     }
 }
