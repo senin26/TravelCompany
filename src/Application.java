@@ -1,92 +1,80 @@
-import city.service.CityService;
-import common.business.application.StorageType;
-import common.business.application.serviceFactory.ServiceSupplier;
-import common.solutions.paginator.Paginator;
 import common.solutions.utils.FileUtils;
 import country.domain.Country;
-import country.service.CountryService;
-import order.service.OrderService;
-import storage.initor.datasourcereader.CountryCityXmlDomParser;
 import storage.initor.datasourcereader.CountryCityXmlStaxParser;
-import storage.initor.datasourcereader.sax.CountryCityXmlJAXBParser;
-import user.search.UserSearchCondition;
-import user.search.UserSearchUtility;
-import user.search.sort.SortComplexityType;
-import user.search.sort.SortOrderDirection;
-import user.search.sort.SortUserField;
-import user.service.UserCSV_FileHandler;
-import user.service.UserCSV_ServiceCreator;
-import user.service.UserService;
-import user.service.impl.UserDefaultService;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
 
+    public static class Reader extends Thread {
+        File fileWithXml;
+        List<Country> countries;
+        boolean done = false;
+        Object sync;
+
+        public Reader(String name, File fileWithXml, List<Country> countries, Object sync) {
+            this.fileWithXml = fileWithXml;
+            this.setName(name);
+            this.countries = countries;
+            this.sync = sync;
+        }
+
+        @Override
+        public void run() {
+            try {
+                countries = new CountryCityXmlStaxParser().parseFile(fileWithXml.getAbsolutePath());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            print(sync);
+            done = true;
+        }
+
+        private void print(Object sync) {
+            synchronized (sync) {
+                System.out.println(Thread.currentThread().getName());
+                for (Country country : countries) {
+                    System.out.println(country + "\n");
+                }
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
-
-        /*File fileWithXml = null;
-        System.out.println("----------DOM xml-parser----------\n");
+        List<Country> countries1 = new ArrayList<>();
+        List<Country> countries2 = new ArrayList<>();
+        File fileWithXml1 = null;
+        File fileWithXml2 = null;
+        Reader reader1 = null;
+        Reader reader2 = null;
+        Object sync = new Object();
         try {
-            fileWithXml = FileUtils.createFileFromResource("init_data", ".xml", "/init_data.xml");
-            List<Country> countries = new CountryCityXmlDomParser().parseFile(fileWithXml.getAbsolutePath());
-            for (Country country : countries) {
-                System.out.println(country + "\n");
-            }
+            fileWithXml1 = FileUtils.createFileFromResource("init_data1", ".xml", "/init_data1.xml");
+            fileWithXml2 = FileUtils.createFileFromResource("init_data2", ".xml", "/init_data2.xml");
+            reader1 = new Reader("Reader: Russia, USA", fileWithXml1, countries1, sync);
+            reader1.start();
+            reader2 = new Reader("Reader: Belgium, Netherlands", fileWithXml2, countries2, sync);
+            reader2.start();
+            /*reader1.join();
+            reader2.join();*/
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (fileWithXml != null) {
+            if (fileWithXml1 != null && fileWithXml2 != null && reader1.done && reader2.done) {
                 try {
-                    Files.delete(Paths.get(fileWithXml.toURI()));
+                    Files.delete(Paths.get(fileWithXml1.toURI()));
+                    Files.delete(Paths.get(fileWithXml2.toURI()));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }*/
-
-        /*System.out.println("----------Stax xml-parser----------\n");
-        fileWithXml = null;
-        try {
-            fileWithXml = FileUtils.createFileFromResource("init_data", ".xml", "/init_data.xml");
-            List<Country> countries = new CountryCityXmlStaxParser().parseFile(fileWithXml.getAbsolutePath());
-            for (Country country : countries) {
-                System.out.println(country + "\n");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fileWithXml != null) {
-                try {
-                    Files.delete(Paths.get(fileWithXml.toURI()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }*/
-
-        ServiceSupplier.newInstance(StorageType.MEMORY_COLLECTION);
-
-        UserService userService = ServiceSupplier.getInstance().getUserService();
-        OrderService orderService = ServiceSupplier.getInstance().getOrderService();
-        CountryService countryService = ServiceSupplier.getInstance().getCountryService();
-        CityService cityService = ServiceSupplier.getInstance().getCityService();
-
-        String path = "resources\\users";
-
-        UserCSV_FileHandler userCSV_fileHandler = UserCSV_ServiceCreator.getUserCSV_FileHandler(path, userService);
-        userCSV_fileHandler.addUsersFromCSV();
-
-        //todo Uncomment the next line to get the search result on single field
-        //UserSearchCondition userSearchCondition = UserSearchUtility.getUserSearchCondition(SortComplexityType.SIMPLE, SortOrderDirection.ASC, SortUserField.BY_NAME);
-        UserSearchCondition userSearchCondition = UserSearchUtility.getUserSearchCondition(SortComplexityType.COMPLEX, SortOrderDirection.ASC, SortUserField.BY_NAME, SortUserField.BY_AGE);
-
-        Paginator.show(userService.search(userSearchCondition), 2);
-
+        }
     }
 
 }
