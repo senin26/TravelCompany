@@ -27,7 +27,7 @@ public class Application {
                 fileWithXml1 = FileUtils.createFileFromResource("init_data1", ".xml", "/init_data1.xml");
                 fileWithXml2 = FileUtils.createFileFromResource("init_data2", ".xml", "/init_data2.xml");
                 fileWithXml3 = FileUtils.createFileFromResource("init_data3", ".xml", "/init_data3.xml");
-                filesWithXml = addFilesToArray(fileWithXml1, fileWithXml2, fileWithXml3);
+                filesWithXml = new File[]{fileWithXml1, fileWithXml2, fileWithXml3};
                 storageInitor.initStorageWithCountriesAndModels(filesWithXml);
             } catch (TravelCompanyCheckedException e) {
                 System.out.println("ERROR while init storage: " + e.getMessage());
@@ -42,22 +42,15 @@ public class Application {
             }
         }
 
-        private File[] addFilesToArray(File... files) {
-            File[] resFileArray = new File[files.length];
+        private boolean filesNotContainNull(File[] files) {
             for (int i = 0; i < files.length; i++) {
-                resFileArray[i] = files[i];
-            }
-            return resFileArray;
-        }
-
-        private boolean filesNotContainNull(File... files) {
-            for (int i = 0; i < files.length; i++) {
-                if (files[i] == null) return false;
+                if (files[i] == null)
+                    return false;
             }
             return true;
         }
 
-        private void deleteAllFiles(File... files) throws Exception {
+        private void deleteAllFiles(File[] files) throws Exception {
             for (int i = 0; i < files.length; i++) {
                 Files.delete(Paths.get(files[i].toURI()));
             }
@@ -72,6 +65,5 @@ public class Application {
             e.printStackTrace();
         }
        appInner.countryService.printAll();
-
     }
 }

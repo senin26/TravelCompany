@@ -33,7 +33,7 @@ public class StorageInitializer {
         }
     }
 
-    public void initStorageWithCountriesAndModels(File... filePaths) throws Exception {
+    public void initStorageWithCountriesAndModels(File[] filePaths) throws Exception {
         List<Country> countriesToPersist = getCountriesFromStorage(filePaths);
 
         if (!countriesToPersist.isEmpty()) {
@@ -43,7 +43,7 @@ public class StorageInitializer {
         }
     }
 
-    private List<Country> getCountriesFromStorage(File... filePaths) throws Exception {
+    private List<Country> getCountriesFromStorage(File[] filePaths) throws Exception {
 
         List<Country> countriesRes = new ArrayList<>();
         List<CountryCityReader> readers = new ArrayList<>();
