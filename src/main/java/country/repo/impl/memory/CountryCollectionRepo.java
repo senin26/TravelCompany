@@ -3,6 +3,7 @@ package country.repo.impl.memory;
 import country.domain.Country;
 import country.repo.CountryRepo;
 import country.search.CountrySearchCondition;
+import storage.SequenceGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,6 +15,7 @@ public class CountryCollectionRepo implements CountryRepo {
     @Override
     public void insert(Country country) {
         countriesList.add(country);
+        country.setId(SequenceGenerator.getNextValue());
     }
 
     @Override

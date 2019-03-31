@@ -23,7 +23,7 @@ public class StorageInitializer {
         TXT_FILE, XML_FILE
     }
 
-    public void initStorageWithCountriesAndModels(String filePath, DataSourceType dataSourceType) throws Exception {
+    public void initStorageWithCountriesAndCities(String filePath, DataSourceType dataSourceType) throws Exception {
         List<Country> countriesToPersist = getCountriesFromStorage(filePath, dataSourceType);
 
         if (!countriesToPersist.isEmpty()) {
@@ -33,7 +33,7 @@ public class StorageInitializer {
         }
     }
 
-    public void initStorageWithCountriesAndModels(File[] filePaths) throws Exception {
+    public void initStorageWithCountriesAndCities(File[] filePaths) throws Exception {
         List<Country> countriesToPersist = getCountriesFromStorage(filePaths);
 
         if (!countriesToPersist.isEmpty()) {

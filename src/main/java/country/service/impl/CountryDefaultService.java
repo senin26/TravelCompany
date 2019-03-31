@@ -3,6 +3,7 @@ package country.service.impl;
 import city.domain.City;
 import city.service.CityService;
 import common.business.exceptions.TravelCompanyUncheckedException;
+import common.solutions.functionaldomainsolutions.Replaceable;
 import country.domain.Country;
 import country.repo.CountryRepo;
 import country.search.CountrySearchCondition;
@@ -89,4 +90,13 @@ public class CountryDefaultService implements CountryService {
         countryRepo.printAll();
     }
 
+   /* @Override
+    public void replaceAll(City city, Country country) {
+        replaceable.replaceTo(city, country);
+    }*/
+
+    @Override
+    public void replaceAll(Replaceable replaceable, City city, Country country) {
+         replaceable.replaceTo(city, country);
+    }
 }

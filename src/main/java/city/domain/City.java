@@ -12,6 +12,7 @@ public abstract class City extends BaseDomain<Long> {
     protected String name;
     protected String description;
     protected String countryName;
+    protected Long countryID;
     @XmlElement(name="population")
     protected int population;
     protected CityDiscriminator discriminator;
@@ -54,6 +55,14 @@ public abstract class City extends BaseDomain<Long> {
 
     public CityDiscriminator getDiscriminator() {
         return discriminator;
+    }
+
+    public Long getCountryID() {
+        return countryID;
+    }
+
+    public void setCountryID(Long countryID) {
+        this.countryID = countryID;
     }
 
     protected abstract void initDiscriminator();

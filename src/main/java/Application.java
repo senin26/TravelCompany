@@ -1,7 +1,10 @@
+import city.domain.City;
 import common.business.application.StorageType;
 import common.business.application.serviceFactory.ServiceSupplier;
 import common.business.exceptions.TravelCompanyCheckedException;
+import common.solutions.functionaldomainsolutions.Replaceable;
 import common.solutions.utils.FileUtils;
+import country.domain.Country;
 import country.service.CountryService;
 import storage.initor.StorageInitializer;
 import java.io.File;
@@ -28,12 +31,13 @@ public class Application {
                 fileWithXml2 = FileUtils.createFileFromResource("init_data2", ".xml", "/init_data2.xml");
                 fileWithXml3 = FileUtils.createFileFromResource("init_data3", ".xml", "/init_data3.xml");
                 filesWithXml = new File[]{fileWithXml1, fileWithXml2, fileWithXml3};
-                storageInitor.initStorageWithCountriesAndModels(filesWithXml);
+                storageInitor.initStorageWithCountriesAndCities(filesWithXml);
             } catch (TravelCompanyCheckedException e) {
                 System.out.println("ERROR while init storage: " + e.getMessage());
                 throw e;
             } catch (Exception e) {
-                System.out.println("Error: Unknown fucking magic :" + e.getMessage());
+                System.out.println("Error: Unknown fucking magic :");
+                e.printStackTrace();
                 throw e;
             } finally {
                 if (filesNotContainNull(filesWithXml)) {
@@ -64,6 +68,21 @@ public class Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       appInner.countryService.printAll();
+
+        Replaceable replaceable = (city, country) -> {
+            ((City) city).setId(((Country) country).getId());
+        };
+
+        City city;
+        for (Country country:
+             appInner.countryService.findAll()) {
+            for (int i = 0; i < country.getCities().size(); i++) {
+                city = (City) country.getCities().get(i);
+                appInner.countryService.replaceAll(replaceable, city, country);
+            }
+        }
+
+        appInner.countryService.printAll();
+
     }
 }

@@ -2,6 +2,7 @@ package country.domain;
 
 import city.domain.City;
 import common.business.domain.BaseDomain;
+import common.solutions.functionaldomainsolutions.Replaceable;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
