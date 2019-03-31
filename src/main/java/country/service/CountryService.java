@@ -14,7 +14,5 @@ public interface CountryService extends BaseService<Country, Long> {
 
     void removeAllCitiesFromCountry(Long countryId) throws TravelCompanyUncheckedException;
 
-    //void replaceAll(City city, Country country);
-
     void replaceAll(Replaceable replaceable, City city, Country country);
 }
