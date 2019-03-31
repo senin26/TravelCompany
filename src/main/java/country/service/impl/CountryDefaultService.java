@@ -90,11 +90,6 @@ public class CountryDefaultService implements CountryService {
         countryRepo.printAll();
     }
 
-   /* @Override
-    public void replaceAll(City city, Country country) {
-        replaceable.replaceTo(city, country);
-    }*/
-
     @Override
     public void replaceAll(Replaceable replaceable, City city, Country country) {
          replaceable.replaceTo(city, country);
