@@ -71,6 +71,7 @@ public abstract class City extends BaseDomain<Long> {
     public String toString() {
         return discriminator +
                 " id=" + id + '\'' +
+                " countryId=" + countryID + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", countryName='" + countryName + '\'' +

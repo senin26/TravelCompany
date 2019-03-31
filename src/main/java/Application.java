@@ -70,7 +70,7 @@ public class Application {
         }
 
         Replaceable replaceable = (city, country) -> {
-            ((City) city).setId(((Country) country).getId());
+            ((City) city).setCountryID(((Country) country).getId());
         };
 
         appInner.countryService.findAll().forEach((country) -> {
