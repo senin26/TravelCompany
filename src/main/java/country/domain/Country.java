@@ -51,7 +51,7 @@ public class Country extends BaseDomain<Long> {
         this.capital = capital;
     }
 
-    public List getCities() {
+    public List<City> getCities() {
         return cities;
     }
 

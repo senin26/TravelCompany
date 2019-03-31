@@ -73,14 +73,11 @@ public class Application {
             ((City) city).setId(((Country) country).getId());
         };
 
-        City city;
-        for (Country country:
-             appInner.countryService.findAll()) {
-            for (int i = 0; i < country.getCities().size(); i++) {
-                city = (City) country.getCities().get(i);
+        appInner.countryService.findAll().forEach((country) -> {
+            country.getCities().forEach((city) -> {
                 appInner.countryService.replaceAll(replaceable, city, country);
-            }
-        }
+            });
+        });
 
         appInner.countryService.printAll();
 
